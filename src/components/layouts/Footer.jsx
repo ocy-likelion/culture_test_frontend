@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function Footer({ primaryBtn, secondaryBtn }) {
   return (
-    <footer className="fixed bottom-0 left-1/2 -translate-x-1/2 max-w-[640px] w-full bg-white p-[2rem]">
+    <footer className="fixed bottom-0 left-1/2 -translate-x-1/2 max-w-[640px] w-full bg-white p-[2rem] flex flex-col gap-[1rem]">
       {primaryBtn}
       {secondaryBtn}
     </footer>

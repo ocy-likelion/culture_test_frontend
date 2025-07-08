@@ -6,6 +6,8 @@ function Button({
   children,
   primary,
   secondary,
+  kakao,
+  google,
   // success,
   // warning,
   // danger,
@@ -16,7 +18,7 @@ function Button({
 }) {
   const classes = classNames(
     rest.className,
-    "flex items-center justify-center w-full min-h-[4.2rem] 2xl:min-h-[6rem] transition-all duration-150 font-semibold text-[1.8rem] leading-[4.2rem] 2xl:leading-[6rem] tracking-[0%] border",
+    "flex items-center justify-center w-full min-h-[4.8rem] 2xl:min-h-[6rem] transition-all duration-150 font-semibold text-[1.8rem] leading-[4.2rem] 2xl:leading-[6rem] tracking-[0%] border",
     {
       "opacity-80 cursor-not-allowed": loading,
       "border-primary-30 bg-primary-30 text-white": primary,
@@ -24,7 +26,9 @@ function Button({
       // "border-green-500 bg-green-500 text-white": success,
       // "border-yellow-400 bg-yellow-400 text-white": warning,
       // "border-red-500 bg-red-500 text-white": danger,
-      "rounded-[1rem]": rounded,
+      "rounded-[0.6rem]": rounded,
+      "border-none bg-kakao text-grey-90": kakao,
+      "border-grey-50 bg-white text-grey-90": google,
       // "bg-white": outline,
       // "text-primary-30": outline && primary,
       // "text-grey-90": outline && secondary,

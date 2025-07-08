@@ -19,7 +19,7 @@ export default function SurveyLayout({
       />
 
       {/* 콘텐츠 영역 */}
-      <main className="flex flex-col flex-1 items-center overflow-y-auto px-[2rem] gap-[3rem] 2xl:gap-[10rem] pb-[10rem]">
+      <main className="flex flex-col flex-1 items-center overflow-y-auto px-[2rem] gap-[1.6rem] 2xl:gap-[10rem] pb-[10rem]">
         {children}
       </main>
 
