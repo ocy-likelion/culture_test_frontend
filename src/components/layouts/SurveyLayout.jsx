@@ -10,7 +10,7 @@ export default function SurveyLayout({
   secondaryBtn,
 }) {
   return (
-    <div className="max-w-[640px] mx-auto flex flex-col min-h-screen">
+    <div className="max-w-[640px] mx-auto flex flex-col min-h-screen bg-white">
       {/* 상단 네비게이션 or 진행 표시 */}
       <Header
         leftSlot={leftSlot}
