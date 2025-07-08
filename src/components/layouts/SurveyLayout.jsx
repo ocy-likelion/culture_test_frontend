@@ -1,19 +1,30 @@
-// layouts/SurveyLayout.tsx
+import Footer from "@components/layouts/Footer";
+import Header from "@components/layouts/Header";
 
-export default function SurveyLayout({ children }) {
+export default function SurveyLayout({
+  children,
+  leftSlot,
+  middleSlot,
+  rightSlot,
+  primaryBtn,
+  secondaryBtn,
+}) {
   return (
-    <div className="bg-slate-400 max-w-[640px] mx-auto flex flex-col min-h-screen px-4 py-6">
+    <div className="max-w-[640px] mx-auto flex flex-col min-h-screen">
       {/* 상단 네비게이션 or 진행 표시 */}
-      <header className="grid grid-cols-3 items-center justify-center bg-slate-200">
-        <div className="mr-auto">grid 1</div>
-        <div className="text-center">grid 2</div>
-        <div className="ml-auto">grid 3</div>
-      </header>
+      <Header
+        leftSlot={leftSlot}
+        middleSlot={middleSlot}
+        rightSlot={rightSlot}
+      />
 
       {/* 콘텐츠 영역 */}
-      <main className="flex-1">{children}</main>
+      <main className="flex flex-col flex-1 items-center overflow-y-auto px-[2rem] gap-[3rem] 2xl:gap-[10rem] pb-[10rem]">
+        {children}
+      </main>
 
-      <footer>FOOTER</footer>
+      {/* 하단 버튼 영역 */}
+      <Footer primaryBtn={primaryBtn} secondaryBtn={secondaryBtn} />
     </div>
   );
 }

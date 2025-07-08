@@ -1,3 +1,23 @@
+/* src/index.css */
+@import "pretendard/dist/web/variable/pretendardvariable.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.2;
+
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
