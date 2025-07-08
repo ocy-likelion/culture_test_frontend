@@ -18,15 +18,11 @@ export default function StartPage() {
         </button>
       }
       primaryBtn={
-        <Button primary rounded onClick={() => console.log("Start!")}>
+        <Button primary rounded onClick={() => navigate("/survey")}>
           시작하기
         </Button>
       }
-      // secondaryBtn={
-      //   <Button secondary rounded onClick={() => console.log("Again!")}>
-      //     테스트 다시하기
-      //   </Button>
-      // }
+      mainClassName="items-center"
     >
       <div
         className="flex flex-col gap-[1.2rem] 2xl:gap-[2.8rem] mt-[6rem]

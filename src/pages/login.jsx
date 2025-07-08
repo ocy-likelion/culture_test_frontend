@@ -19,6 +19,7 @@ export default function Login() {
             구글로 시작하기
           </Button>
         }
+        mainClassName="items-center"
       >
         <div className="flex flex-col justify-center items-center gap-[2rem] mt-[14rem]">
           <img src="/logo.svg" className="w-[25rem]" />

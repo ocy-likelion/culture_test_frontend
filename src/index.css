@@ -8,6 +8,7 @@
 :root {
   font-size: 62.5%;
   background-color: #eaeef1;
+  --effect-focus: 0 0 0 4px rgba(233, 181, 134, 0.36);
 }
 
 body {
@@ -20,4 +21,46 @@ body {
 img {
   max-width: 100%;
   vertical-align: top;
+}
+
+.inputUnset {
+  all: unset;
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.choice::before {
+  content: " ";
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: center 20px;
+  transition: all 0.4s;
+}
+
+/* radio button 일반 상태 */
+.choice.type_radio::before {
+  border-radius: 50%;
+
+  /* 결국 이미지로 해당 부분 디자인 교체 */
+  background-position: center center;
+  background-image: url(/selected.svg);
+  background-size: 0;
+}
+
+/* radio button 선택된 상태 */
+.choice.type_radio:has(:checked)::before {
+  background-size: 1rem;
+  border: 1px solid #ff770f;
+  box-shadow: var(--effect-focus);
 }
