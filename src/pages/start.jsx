@@ -22,7 +22,7 @@ export default function StartPage() {
           시작하기
         </Button>
       }
-      mainClassName="items-center"
+      mainCN="px-[2rem] items-center"
     >
       <div
         className="flex flex-col gap-[1.2rem] 2xl:gap-[2.8rem] mt-[6rem]

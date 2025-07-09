@@ -19,9 +19,9 @@ export default function Login() {
             구글로 시작하기
           </Button>
         }
-        mainClassName="items-center"
+        mainCN="items-center"
       >
-        <div className="flex flex-col justify-center items-center gap-[2rem] mt-[14rem]">
+        <div className="flex flex-col justify-center items-center gap-[2rem] mt-[8rem]">
           <img src="/logo.svg" className="w-[25rem]" />
           <p className="text-[2rem] font-regular">
             나와 잘 맞는 사람, AI가 찾아드립니다

@@ -8,10 +8,14 @@ export default function SurveyLayout({
   rightSlot,
   primaryBtn,
   secondaryBtn,
-  mainClassName = "",
+  containerCN = "bg-white",
+  mainCN = "",
+  footerCN = "bg-white",
 }) {
   return (
-    <div className="max-w-[640px] mx-auto flex flex-col min-h-screen bg-white">
+    <div
+      className={`max-w-[640px] mx-auto flex flex-col min-h-screen ${containerCN}`}
+    >
       {/* 상단 네비게이션 or 진행 표시 */}
       <Header
         leftSlot={leftSlot}
@@ -21,12 +25,16 @@ export default function SurveyLayout({
       {/* 콘텐츠 영역 */}
       {/* Tailwind에서는 items-* 클래스는 서로 덮어쓰기 되지 않고 공존 => mainClassName으로 스타일링 조정 */}
       <main
-        className={`flex flex-col flex-1 overflow-y-auto px-[2rem] gap-[1.6rem] 2xl:gap-[10rem] pb-[10rem] pt-[6rem] ${mainClassName}`}
+        className={`flex flex-col flex-1 overflow-y-auto gap-[1.6rem] 2xl:gap-[10rem] pb-[10rem] pt-[6rem] ${mainCN}`}
       >
         {children}
       </main>
       {/* 하단 버튼 영역 */}
-      <Footer primaryBtn={primaryBtn} secondaryBtn={secondaryBtn} />
+      <Footer
+        primaryBtn={primaryBtn}
+        secondaryBtn={secondaryBtn}
+        footerCN={footerCN}
+      />
     </div>
   );
 }

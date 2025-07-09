@@ -36,11 +36,11 @@ export default function TestPage() {
         </button>
       }
       primaryBtn={
-        <Button primary rounded onClick={() => console.log("Start!")}>
+        <Button primary rounded onClick={() => navigate("/my")}>
           다음으로
         </Button>
       }
-      // mainClassName="items-start"
+      mainCN="px-[2rem]"
     >
       {/* Progress Bar */}
       <div className="w-full h-[0.6rem] bg-primary-10 rounded-full overflow-hidden mt-8">
