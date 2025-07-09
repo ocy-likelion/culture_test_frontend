@@ -1,10 +1,13 @@
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
+import Modal from "@components/Modal";
 import Question from "@components/Question";
+import Spinner from "@components/Spinner";
 import { useNavigate } from "react-router-dom";
 
 export default function TestPage() {
   const navigate = useNavigate();
+  const isLoading = false; // 유형 분석 요청(POST) 시 세팅되는 isLoading: true로 변경 예정
 
   // React Query(useQuery)를 이용한 GET 요청 코드
   const questionsDummy = [
@@ -62,6 +65,22 @@ export default function TestPage() {
           />
         ))}
       </div>
+
+      {isLoading && (
+        <Modal>
+          <div className="flex flex-col items-center gap-4">
+            <Spinner />
+            <div className="text-center text-[1.6rem]">
+              <p className="font-medium text-grey-90 text-[1.6rem] mb-2">
+                결과 분석 중...
+              </p>
+              <p className="font-light text-grey-80 text-[1.2rem]">
+                잠시만 기다려주세요.
+              </p>
+            </div>
+          </div>
+        </Modal>
+      )}
     </SurveyLayout>
   );
 }

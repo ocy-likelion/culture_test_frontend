@@ -64,3 +64,19 @@ img {
   border: 1px solid #ff770f;
   box-shadow: var(--effect-focus);
 }
+
+/* "어떻게 움직일지" 정해놓는 애니메이션 시나리오 */
+/* Tailwind는 기본적으로 @keyframes을 제공하지 않아 아래처럼 직접 추가 */
+@keyframes spinner-rotate {
+  0% {
+    transform: rotate(0deg); /* 시작: 회전 0도 */
+  }
+  100% {
+    transform: rotate(360deg); /* 끝: 회전 360도 → 1바퀴 */
+  }
+}
+
+.animate-spinner-rotate {
+  animation: spinner-rotate 1s linear infinite;
+  /* 정의한 keyframe(애니메이션 동작)을 1초동안 실행되도록, 속도는 일정하게 (처음도 느리지 않게) */
+}

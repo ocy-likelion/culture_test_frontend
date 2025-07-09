@@ -14,7 +14,11 @@ export default function StartPage() {
       }
       rightSlot={
         <button>
-          <img src={`/profile.svg`} className="w-[3.6rem] aspect-square" />
+          <img
+            src={`/profile.svg`}
+            className="w-[3.6rem] aspect-square"
+            onClick={() => navigate("/my")}
+          />
         </button>
       }
       primaryBtn={

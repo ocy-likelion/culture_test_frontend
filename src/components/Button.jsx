@@ -17,8 +17,8 @@ function Button({
   ...rest
 }) {
   const classes = classNames(
+    "flex items-center justify-center w-full h-[4.8rem] 2xl:h-[6rem] transition-all duration-150 font-semibold text-[1.8rem] leading-[4.2rem] 2xl:leading-[6rem] tracking-[0%] border",
     rest.className,
-    "flex items-center justify-center w-full min-h-[4.8rem] 2xl:min-h-[6rem] transition-all duration-150 font-semibold text-[1.8rem] leading-[4.2rem] 2xl:leading-[6rem] tracking-[0%] border",
     {
       "opacity-80 cursor-not-allowed": loading,
       "border-primary-30 bg-primary-30 text-white": primary,

@@ -1,0 +1,8 @@
+<svg width="88" height="108" viewBox="0 0 88 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="88" y="108" width="88" height="108" rx="6.4" transform="rotate(-180 88 108)" fill="#EEEEEE"/>
+<path d="M0 32L25.6 32C29.1346 32 32 29.1346 32 25.6L32 0L0 32Z" fill="#DADADA"/>
+<path d="M32 2.79753e-06L6.4 5.59506e-07C2.86538 2.50499e-07 -2.50499e-07 2.86538 -5.59506e-07 6.4L-2.79753e-06 32L32 2.79753e-06Z" fill="white"/>
+<circle cx="40.0002" cy="82.0002" r="3.2" transform="rotate(-180 40.0002 82.0002)" fill="#DADADA"/>
+<circle cx="19.1999" cy="82.0002" r="3.2" transform="rotate(-180 19.1999 82.0002)" fill="#DADADA"/>
+<path d="M36.7998 91.5996L22.3998 91.5996" stroke="#DADADA" stroke-width="4.8" stroke-linecap="round"/>
+</svg>
