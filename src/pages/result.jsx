@@ -1,4 +1,5 @@
 import Button from "@components/Button";
+import Chart from "@components/Chart";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import { useNavigate } from "react-router-dom";
 
@@ -56,8 +57,8 @@ export default function ResultPage() {
         <img src="/result-big.svg" className="w-[28rem] aspect-square" />
       </div>
 
-      <div className=" h-[24rem] rounded-[0.6rem] flex flex-col justify-between items-center bg-white pt-[3.4rem]">
-        CHART
+      <div className="rounded-[0.6rem] flex flex-col justify-between items-center bg-white pt-[3.4rem]">
+        <Chart />
       </div>
 
       <div className=" bg-white rounded-[0.6rem] leading-[200%] tracking-[-2.3%] py-[2rem] px-[1.6rem]">
