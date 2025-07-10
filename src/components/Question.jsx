@@ -12,7 +12,6 @@ export default function Question({ index, text, questionId }) {
 
   return (
     <>
-      {/* ⭐️⭐️ Quesetion 1 => 공통 컴포넌트화 예정 ⭐️⭐️ */}
       <div className="w-full flex flex-col gap-2">
         <h1 className="font-medium text-primary-30 text-[2.2rem]">
           Q{index + 1}
@@ -21,7 +20,7 @@ export default function Question({ index, text, questionId }) {
           {text}
         </p>
 
-        <div className="relative flex items-center justify-between w-full mt-10 mb-6 z-[0]">
+        <div className="relative flex items-center justify-between w-full mt-[4rem] mb-6 z-[0]">
           {options.map((option, idx) => (
             <label key={idx} className="choice type_radio">
               <input

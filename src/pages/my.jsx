@@ -9,10 +9,6 @@ export default function MyPage() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleModal = () => {
-    setIsModalOpen((prev) => !prev);
-  };
-
   const testResults = [
     // {
     //   id: 1,
