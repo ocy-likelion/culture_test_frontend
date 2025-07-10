@@ -34,7 +34,7 @@ export default function TestPage() {
       }
       middleSlot={<p className="text-[1.8rem] text-grey-90">1/10</p>}
       rightSlot={
-        <button>
+        <button onClick={() => navigate("/start")}>
           <img src={`/xbtn.svg`} className="w-[3.6rem] aspect-square" />
         </button>
       }
