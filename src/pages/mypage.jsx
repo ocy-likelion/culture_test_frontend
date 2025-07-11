@@ -8,38 +8,39 @@ import { useNavigate } from "react-router-dom";
 export default function MyPage() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [logout, setLogout] = useState(false);
 
   const testResults = [
-    // {
-    //   id: 1,
-    //   type: "관계 조율자형",
-    //   date: "2025.07.03",
-    //   image: "/result-exam.svg",
-    // },
-    // {
-    //   id: 2,
-    //   type: "창의적 혁신가형",
-    //   date: "2025.06.29",
-    //   image: "/result-exam.svg",
-    // },
-    // {
-    //   id: 3,
-    //   type: "논리적 분석가형",
-    //   date: "2025.06.20",
-    //   image: "/result-exam.svg",
-    // },
-    // {
-    //   id: 4,
-    //   type: "조직 관리자형",
-    //   date: "2025.06.11",
-    //   image: "/result-exam.svg",
-    // },
-    // {
-    //   id: 5,
-    //   type: "직관적 실행가형",
-    //   date: "2025.05.30",
-    //   image: "/result-exam.svg",
-    // },
+    {
+      id: 1,
+      type: "관계 조율자형",
+      date: "2025.07.03",
+      image: "/result-exam.svg",
+    },
+    {
+      id: 2,
+      type: "창의적 혁신가형",
+      date: "2025.06.29",
+      image: "/result-exam.svg",
+    },
+    {
+      id: 3,
+      type: "논리적 분석가형",
+      date: "2025.06.20",
+      image: "/result-exam.svg",
+    },
+    {
+      id: 4,
+      type: "조직 관리자형",
+      date: "2025.06.11",
+      image: "/result-exam.svg",
+    },
+    {
+      id: 5,
+      type: "직관적 실행가형",
+      date: "2025.05.30",
+      image: "/result-exam.svg",
+    },
   ];
 
   return (
@@ -73,7 +74,10 @@ export default function MyPage() {
             <span className="text-grey-70 text-[1.6rem]">kakao 로그인</span>
           </div>
 
-          <button className="px-[1.4rem] py-[0.6rem] text-grey-70 border text-[1.4rem] font-medium rounded-md border-grey-30">
+          <button
+            className="px-[1.4rem] py-[0.6rem] text-grey-70 border text-[1.4rem] font-medium rounded-md border-grey-30"
+            onClick={() => setLogout(true)}
+          >
             로그아웃
           </button>
         </div>
@@ -139,6 +143,34 @@ export default function MyPage() {
               className="h-[4rem] leading-[4rem] text-[1.6rem]"
             >
               떠나기
+            </Button>
+          </div>
+        </Modal>
+      )}
+
+      {logout && (
+        <Modal>
+          <div className="flex flex-col gap-3 items-center">
+            <p className="text-grey-90 font-medium text-[1.8rem]">로그아웃</p>
+            <p className="text-grey-80 text-[1.2rem] leading-[150%] text-center">
+              정말 로그아웃 하시겠습니까?
+            </p>
+          </div>
+
+          <div className="flex gap-3">
+            <Button
+              rounded
+              onClick={() => setLogout(false)}
+              className="bg-grey-30 text-grey-70 h-[4rem] leading-[4rem] text-[1.6rem]"
+            >
+              취소
+            </Button>
+            <Button
+              primary
+              rounded
+              className="h-[4rem] leading-[4rem] text-[1.6rem]"
+            >
+              로그아웃
             </Button>
           </div>
         </Modal>
