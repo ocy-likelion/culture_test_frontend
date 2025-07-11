@@ -93,7 +93,7 @@ export default function Chart({ label, left, right, color }) {
   return (
     <div className="w-full flex flex-col items-center">
       {/* 가운데 레이블 */}
-      <div className="text-center text-grey-90 text-[1.6rem]">{label}</div>
+      <div className="text-center text-grey-90 text-[1.4rem]">{label}</div>
 
       {/* Bar 차트 */}
       <div className="w-full h-[4rem] flex justify-center items-center">

@@ -51,8 +51,8 @@ export default function MyPage() {
       }
       middleSlot={<h1 className="text-[1.8rem] font-semibold">MY</h1>}
       containerCN="bg-grey-20"
-      mainCN="gap-[1rem] pb-[1rem]" // myPage에서만 간격 좁게
-      footerCN="bg-grey-20 static"
+      mainCN="gap-[1rem]" // myPage에서만 간격 좁게
+      footerCN="bg-white static"
       primaryBtn={
         <button
           className={`underline text-[1.2rem] text-grey-60`}
@@ -93,7 +93,7 @@ export default function MyPage() {
             />
           ))
         ) : (
-          <div className="flex flex-col flex-1 items-center justify-center gap-[2rem] p-[3rem]">
+          <div className="flex flex-col flex-1 items-center justify-center gap-[2rem] p-[2rem]">
             <img src="/memo.svg" className="w-[6rem]" />
             <p className="text-center text-[1.5rem] text-grey-70">
               아직 진행한 테스트가 없어요.
@@ -114,34 +114,32 @@ export default function MyPage() {
 
       {isModalOpen && (
         <Modal>
-          <div className="flex flex-col gap-10">
-            <div className="flex flex-col gap-3 items-center">
-              <p className="text-grey-90 font-medium text-[1.8rem]">
-                정말 탈퇴하시겠어요?
-              </p>
-              <p className="text-grey-80 text-[1.2rem] leading-[150%] text-center">
-                지금 탈퇴하시면 테스트 결과 및 기록이
-                <br />
-                모두 삭제되고 복구가 불가능합니다.
-              </p>
-            </div>
+          <div className="flex flex-col gap-3 items-center">
+            <p className="text-grey-90 font-medium text-[1.8rem]">
+              정말 탈퇴하시겠어요?
+            </p>
+            <p className="text-grey-80 text-[1.2rem] leading-[150%] text-center">
+              지금 탈퇴하시면 테스트 결과 및 기록이
+              <br />
+              모두 삭제되고 복구가 불가능합니다.
+            </p>
+          </div>
 
-            <div className="flex gap-3">
-              <Button
-                rounded
-                onClick={() => setIsModalOpen(false)}
-                className="bg-grey-30 h-[4.2rem] text-grey-70 text-[1.4rem] px-[1rem]"
-              >
-                머무르기
-              </Button>
-              <Button
-                primary
-                rounded
-                className="h-[4.2rem] leading-[3rem] text-[1.2rem] px-[1rem]"
-              >
-                떠나기
-              </Button>
-            </div>
+          <div className="flex gap-3">
+            <Button
+              rounded
+              onClick={() => setIsModalOpen(false)}
+              className="bg-grey-30 text-grey-70 h-[4rem] leading-[4rem] text-[1.6rem]"
+            >
+              머무르기
+            </Button>
+            <Button
+              primary
+              rounded
+              className="h-[4rem] leading-[4rem] text-[1.6rem]"
+            >
+              떠나기
+            </Button>
           </div>
         </Modal>
       )}

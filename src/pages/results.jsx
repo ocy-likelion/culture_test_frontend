@@ -73,18 +73,18 @@ export default function ResultPage() {
         </Button>
       }
     >
-      <div className="flex flex-col justify-between items-center bg-white pt-[3.4rem] rounded-[0.6rem]">
-        <div className="text-center font-medium text-[2.2rem] leading-[135%]">
+      <div className="flex flex-col justify-between items-center bg-white pt-[3rem] rounded-[0.6rem]">
+        <div className="text-center font-medium text-[2.4rem] leading-[135%]">
           <p>강민지 담당자님은</p>
           <p>
             <span className="text-primary-30">관계 조율자형</span>이시군요!
           </p>
         </div>
 
-        <img src="/result-big.svg" className="w-[28rem] aspect-square" />
+        <img src="/result-big.svg" className="w-[24rem] aspect-square" />
       </div>
 
-      <div className="rounded-[0.6rem] flex flex-col justify-between items-center bg-white py-[3.6rem] px-[2.8rem] gap-[1.8rem]">
+      <div className="rounded-[0.6rem] flex flex-col justify-between items-center bg-white py-[3.6rem] px-[2.8rem] gap-[1.2rem]">
         {rawData.map((item, index) => (
           <div className="flex items-end w-full">
             {/* 왼쪽 */}
