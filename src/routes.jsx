@@ -4,6 +4,7 @@ import ResultsPage from "@pages/results";
 import IntroPage from "@pages/intro";
 import SurveyPage from "@pages/survey";
 import { createBrowserRouter } from "react-router-dom";
+import HistoryPage from "@pages/history";
 
 const router = createBrowserRouter(
   [
@@ -26,6 +27,10 @@ const router = createBrowserRouter(
     {
       path: "/mypage",
       element: <MyPage />,
+    },
+    {
+      path: "/mypage/history",
+      element: <HistoryPage />,
     },
   ],
   {

@@ -5,7 +5,7 @@ import Question from "@components/Question";
 import Spinner from "@components/Spinner";
 import { useNavigate } from "react-router-dom";
 
-export default function TestPage() {
+export default function SurveyPage() {
   const navigate = useNavigate();
   const isLoading = false; // 유형 분석 요청(POST) 시 세팅되는 isLoading: true로 변경 예정
 

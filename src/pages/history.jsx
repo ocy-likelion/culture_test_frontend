@@ -1,10 +1,10 @@
-import Button from "@components/Button";
 import ChartCanvas from "@components/ChartCanvas";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import { useNavigate } from "react-router-dom";
 
-export default function ResultsPage() {
+export default function HistoryPage() {
   const navigate = useNavigate();
+
   const colorPalette = [
     { hex: "#FF7E8F", text: "text-type-pink" },
     { hex: "#AD7EFF", text: "text-type-purple" },
@@ -12,7 +12,6 @@ export default function ResultsPage() {
     { hex: "#35D12A", text: "text-type-green" },
   ];
 
-  // 2️⃣ 실제 K-means 결과로 받을 데이터 형식
   const rawData = [
     {
       label: "업무 능력",
@@ -39,49 +38,32 @@ export default function ResultsPage() {
   return (
     <SurveyLayout
       containerCN="bg-grey-20"
-      mainCN="px-[2rem] pt-[8rem]"
-      footerCN="bg-grey-20 static"
+      mainCN="px-[2rem] pt-[8rem] pb-[2rem]"
       leftSlot={
         <button onClick={() => navigate(-1)}>
-          <img src={`/share.svg`} className="w-[3.2rem] aspect-square" />
+          <img src={`/chevron-left.svg`} className="w-[3.2rem] aspect-square" />
         </button>
       }
       middleSlot={<img src={`/logo.svg`} className="w-[16rem]" />}
       rightSlot={
         <button>
           <img
-            src={`/profile.svg`}
-            className="w-[3.6rem] aspect-square"
+            src={`/share.svg`}
+            className="w-[3.2rem] aspect-square"
             onClick={() => navigate("/mypage")}
           />
         </button>
       }
-      primaryBtn={
-        <Button primary rounded onClick={() => navigate("/")}>
-          나와 맞는 수강생 보러가기
-        </Button>
-      }
-      secondaryBtn={
-        <Button
-          secondary
-          rounded
-          onClick={() => navigate("/intro")}
-          className="flex items-center gap-[0.8rem]"
-        >
-          <img src={`/rotate.svg`} className="w-[2rem] aspect-square" />
-          <span>테스트 다시하기</span>
-        </Button>
-      }
     >
-      <div className="flex flex-col justify-between items-center bg-white pt-[3rem] rounded-[0.6rem]">
-        <div className="text-center font-medium text-[2.4rem] leading-[135%]">
+      <div className="flex justify-between items-center bg-white rounded-[0.6rem] px-[2rem]">
+        <div className="font-medium text-[2.4rem] leading-[135%]">
           <p>강민지 담당자님은</p>
           <p>
             <span className="text-primary-30">관계 조율자형</span>이시군요!
           </p>
         </div>
 
-        <img src="/result-big.svg" className="w-[24rem] aspect-square" />
+        <img src="/result-big.svg" className="w-[20rem] aspect-square" />
       </div>
 
       <ChartCanvas rawData={rawData} colorPalette={colorPalette} />
