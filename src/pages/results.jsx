@@ -52,7 +52,7 @@ export default function ResultPage() {
           <img
             src={`/profile.svg`}
             className="w-[3.6rem] aspect-square"
-            onClick={() => navigate("/my")}
+            onClick={() => navigate("/mypage")}
           />
         </button>
       }
@@ -65,14 +65,10 @@ export default function ResultPage() {
         <Button
           secondary
           rounded
-          onClick={() => navigate("/survey")}
+          onClick={() => navigate("/intro")}
           className="flex items-center gap-[0.8rem]"
         >
-          <img
-            src={`/rotate.svg`}
-            className="w-[2rem] aspect-square"
-            onClick={() => navigate("/start")}
-          />
+          <img src={`/rotate.svg`} className="w-[2rem] aspect-square" />
           <span>테스트 다시하기</span>
         </Button>
       }

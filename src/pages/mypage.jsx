@@ -104,7 +104,7 @@ export default function MyPage() {
               primary
               rounded
               className="max-w-fit px-[2.4rem] text-[1.8rem]"
-              onClick={() => navigate("/start")}
+              onClick={() => navigate("/intro")}
             >
               테스트 하러 가기
             </Button>

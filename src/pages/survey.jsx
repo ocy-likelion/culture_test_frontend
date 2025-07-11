@@ -34,12 +34,12 @@ export default function TestPage() {
       }
       middleSlot={<p className="text-[1.8rem] text-grey-90">1/10</p>}
       rightSlot={
-        <button onClick={() => navigate("/start")}>
+        <button onClick={() => navigate("/intro")}>
           <img src={`/xbtn.svg`} className="w-[3.6rem] aspect-square" />
         </button>
       }
       primaryBtn={
-        <Button primary rounded onClick={() => navigate("/my")}>
+        <Button primary rounded onClick={() => navigate("/mypage")}>
           다음으로
         </Button>
       }

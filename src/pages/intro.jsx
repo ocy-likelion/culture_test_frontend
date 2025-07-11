@@ -2,7 +2,7 @@ import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import { useNavigate } from "react-router-dom";
 
-export default function StartPage() {
+export default function IntroPage() {
   const navigate = useNavigate();
 
   return (
@@ -17,7 +17,7 @@ export default function StartPage() {
           <img
             src={`/profile.svg`}
             className="w-[3.6rem] aspect-square"
-            onClick={() => navigate("/my")}
+            onClick={() => navigate("/mypage")}
           />
         </button>
       }
@@ -44,7 +44,7 @@ export default function StartPage() {
       </div>
 
       <div className="">
-        <img src={`/start-main.svg`} className="w-[30rem]" />
+        <img src={`/intro-main.svg`} className="w-[30rem]" />
       </div>
 
       <div className="w-full h-min bg-grey-20 rounded-[1rem] text-[1.4rem] leading-[200%] tracking-[-2.3%] p-[1rem]">

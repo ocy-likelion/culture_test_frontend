@@ -8,7 +8,7 @@ export default function Login() {
     <>
       <SurveyLayout
         primaryBtn={
-          <Button kakao rounded onClick={() => navigate("/start")}>
+          <Button kakao rounded onClick={() => navigate("/intro")}>
             <img src="/kakao.svg" className="w-[2rem] aspect-square mr-2" />
             카카오로 시작하기
           </Button>

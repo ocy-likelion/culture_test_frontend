@@ -1,7 +1,7 @@
 import Login from "@pages/login";
-import MyPage from "@pages/my";
-import ResultPage from "@pages/result";
-import StartPage from "@pages/start";
+import MyPage from "@pages/mypage";
+import ResultsPage from "@pages/results";
+import IntroPage from "@pages/intro";
 import SurveyPage from "@pages/survey";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -12,19 +12,19 @@ const router = createBrowserRouter(
       element: <Login />,
     },
     {
-      path: "/start",
-      element: <StartPage />,
+      path: "/intro",
+      element: <IntroPage />,
     },
     {
       path: "/survey",
       element: <SurveyPage />,
     },
     {
-      path: "/result",
-      element: <ResultPage />,
+      path: "/results",
+      element: <ResultsPage />,
     },
     {
-      path: "/my",
+      path: "/mypage",
       element: <MyPage />,
     },
   ],
