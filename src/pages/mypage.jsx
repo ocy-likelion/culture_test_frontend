@@ -52,7 +52,7 @@ export default function MyPage() {
       }
       middleSlot={<h1 className="text-[1.8rem] font-semibold">MY</h1>}
       containerCN="bg-grey-20"
-      mainCN="gap-[1rem]" // myPage에서만 간격 좁게
+      mainCN="gap-[1rem] 2xl:gap-[2rem]" // myPage에서만 간격 좁게
       footerCN="bg-white static"
       primaryBtn={
         <button

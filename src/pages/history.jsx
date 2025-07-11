@@ -38,7 +38,7 @@ export default function HistoryPage() {
   return (
     <SurveyLayout
       containerCN="bg-grey-20"
-      mainCN="px-[2rem] pt-[8rem] pb-[2rem]"
+      mainCN="px-[2rem] pt-[8rem] pb-[2rem] 2xl:gap-[2rem]"
       leftSlot={
         <button onClick={() => navigate(-1)}>
           <img src={`/chevron-left.svg`} className="w-[3.2rem] aspect-square" />

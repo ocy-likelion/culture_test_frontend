@@ -39,7 +39,7 @@ export default function ResultsPage() {
   return (
     <SurveyLayout
       containerCN="bg-grey-20"
-      mainCN="px-[2rem] pt-[8rem]"
+      mainCN="px-[2rem] pt-[8rem] 2xl:gap-[2rem]"
       footerCN="bg-grey-20 static"
       leftSlot={
         <button onClick={() => navigate(-1)}>
