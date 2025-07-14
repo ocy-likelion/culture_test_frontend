@@ -5,7 +5,9 @@ import Question from "@components/Question";
 import Spinner from "@components/Spinner";
 import useAxiosInstance from "@hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
+import useAnswersStore from "@zustand/useAnswersStore";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 
@@ -13,6 +15,7 @@ const PAGE_SIZE = 2;
 
 export default function SurveyPage() {
   const [currentPage, setCurrentPage] = useState(0);
+  const { answers } = useAnswersStore();
 
   const axios = useAxiosInstance();
   const navigate = useNavigate();
@@ -40,6 +43,27 @@ export default function SurveyPage() {
   if (isError) return <p>문제가 발생했습니다.</p>;
 
   const handleNext = () => {
+    const currentQuestionIds =
+      questions?.content.map((q) => q.questionId) || [];
+
+    const unanswered = currentQuestionIds.filter(
+      (id) => !answers.some((ans) => ans.questionId === id)
+    );
+
+    if (unanswered.length > 0) {
+      toast.error("모든 문항에 응답해주세요!", {
+        icon: "⚠️",
+        style: {
+          background: "#fee2e2",
+          color: "#b91c1c",
+          fontWeight: "500",
+          fontSize: "1.6rem",
+          border: "2px solid #fca5a5",
+        },
+      });
+      return;
+    }
+
     if (currentPage < questions?.totalPages - 1)
       setCurrentPage((prev) => prev + 1);
   };

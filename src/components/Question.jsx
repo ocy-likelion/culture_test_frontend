@@ -7,13 +7,6 @@ export default function Question({
   choices,
 }) {
   const [selected, setSelected] = useState(null);
-  // const options = [
-  //   "매우 그렇다",
-  //   "그렇다",
-  //   "보통이다",
-  //   "그렇지 않다",
-  //   "전혀 아니다",
-  // ];
 
   return (
     <>
