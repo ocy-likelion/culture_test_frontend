@@ -1,6 +1,12 @@
 import Chart from "@components/Chart";
 
-export default function ChartCanvas({ rawData, colorPalette }) {
+export default function ChartCanvas({ rawData }) {
+  const colorPalette = [
+    { hex: "#FF7E8F", text: "text-type-pink" },
+    { hex: "#AD7EFF", text: "text-type-purple" },
+    { hex: "#00C0EB", text: "text-type-blue" },
+    { hex: "#35D12A", text: "text-type-green" },
+  ];
   return (
     <div className="rounded-[0.6rem] flex flex-col justify-between items-center bg-white py-[3.6rem] px-[2.8rem] gap-[1.2rem]">
       {rawData.map((item, index) => (

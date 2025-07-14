@@ -5,12 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function ResultsPage() {
   const navigate = useNavigate();
-  const colorPalette = [
-    { hex: "#FF7E8F", text: "text-type-pink" },
-    { hex: "#AD7EFF", text: "text-type-purple" },
-    { hex: "#00C0EB", text: "text-type-blue" },
-    { hex: "#35D12A", text: "text-type-green" },
-  ];
 
   // 2️⃣ 실제 K-means 결과로 받을 데이터 형식
   const rawData = [
@@ -84,7 +78,7 @@ export default function ResultsPage() {
         <img src="/result-big.svg" className="w-[24rem] aspect-square" />
       </div>
 
-      <ChartCanvas rawData={rawData} colorPalette={colorPalette} />
+      <ChartCanvas rawData={rawData} />
 
       <div className=" bg-white rounded-[0.6rem] leading-[200%] tracking-[-2.3%] py-[2rem] px-[1.6rem]">
         <ul className="list-disc pl-[2rem] space-y-[0.6rem] text-grey-90 text-[1.4rem] leading-[160%]">
