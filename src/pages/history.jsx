@@ -12,7 +12,7 @@ export default function HistoryPage() {
     { hex: "#35D12A", text: "text-type-green" },
   ];
 
-  const rawData = [
+  const chartData = [
     {
       label: "업무 능력",
       left: { type: "즉시전력형", score: 74 },
@@ -57,7 +57,7 @@ export default function HistoryPage() {
     >
       <div className="flex justify-between items-center bg-white rounded-[0.6rem] px-[2rem]">
         <div className="font-medium text-[2.4rem] leading-[135%]">
-          <p>강민지 담당자님은</p>
+          <p>홍길동 담당자님은</p>
           <p>
             <span className="text-primary-30">관계 조율자형</span>이시군요!
           </p>
@@ -66,7 +66,7 @@ export default function HistoryPage() {
         <img src="/result-big.svg" className="w-[20rem] aspect-square" />
       </div>
 
-      <ChartCanvas rawData={rawData} colorPalette={colorPalette} />
+      <ChartCanvas chartData={chartData} colorPalette={colorPalette} />
 
       <div className=" bg-white rounded-[0.6rem] leading-[200%] tracking-[-2.3%] py-[2rem] px-[1.6rem]">
         <ul className="list-disc pl-[2rem] space-y-[0.6rem] text-grey-90 text-[1.4rem] leading-[160%]">

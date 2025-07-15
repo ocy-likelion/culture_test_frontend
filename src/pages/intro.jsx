@@ -22,7 +22,12 @@ export default function IntroPage() {
         </button>
       }
       primaryBtn={
-        <Button primary rounded onClick={() => navigate("/survey")}>
+        <Button
+          primary
+          rounded
+          onClick={() => navigate("/survey")}
+          className="text-[2rem]"
+        >
           시작하기
         </Button>
       }
@@ -48,7 +53,7 @@ export default function IntroPage() {
       </div>
 
       <div className="w-full h-min bg-grey-20 rounded-[1rem] text-[1.4rem] leading-[200%] tracking-[-2.3%] p-[1rem]">
-        <p>💡 20문항 / 약 5분 소요</p>
+        <p>💡 16문항 / 약 5분 소요</p>
         <p>업무 스타일, 소통 방식, 판단 기준 등</p>
         <p>당신의 조직문화 성향을 정밀 분석합니다.</p>
       </div>

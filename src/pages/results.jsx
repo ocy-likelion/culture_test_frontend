@@ -1,12 +1,14 @@
 import Button from "@components/Button";
 import ChartCanvas from "@components/ChartCanvas";
 import SurveyLayout from "@components/layouts/SurveyLayout";
+import useAnswersStore from "@zustand/useAnswersStore";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function ResultsPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { resultType, result } = location.state;
+  const { resetAnswer } = useAnswersStore();
 
   return (
     <SurveyLayout
@@ -18,7 +20,11 @@ export default function ResultsPage() {
           <img src={`/share.svg`} className="w-[3.2rem] aspect-square" />
         </button>
       }
-      middleSlot={<img src={`/logo.svg`} className="w-[16rem]" />}
+      middleSlot={
+        <button onClick={() => navigate("/")}>
+          <img src={`/logo.svg`} className="w-[16rem]" />
+        </button>
+      }
       rightSlot={
         <button>
           <img
@@ -29,7 +35,7 @@ export default function ResultsPage() {
         </button>
       }
       primaryBtn={
-        <Button primary rounded onClick={() => navigate("/")}>
+        <Button primary rounded onClick={() => alert("개발 진행 전")}>
           나와 맞는 수강생 보러가기
         </Button>
       }
@@ -37,7 +43,10 @@ export default function ResultsPage() {
         <Button
           secondary
           rounded
-          onClick={() => navigate("/intro")}
+          onClick={() => {
+            resetAnswer();
+            navigate("/intro");
+          }}
           className="flex items-center gap-[0.8rem]"
         >
           <img src={`/rotate.svg`} className="w-[2rem] aspect-square" />
@@ -47,9 +56,10 @@ export default function ResultsPage() {
     >
       <div className="flex flex-col items-center bg-white pt-[3rem] rounded-[0.6rem]">
         <div className="text-center font-medium text-[2.4rem] leading-[135%]">
-          <p>강민지 담당자님은</p>
+          <p>홍길동 담당자님은</p>
           <p>
-            <span className="text-primary-30">{resultType}</span>형이시군요!
+            <span className="text-primary-30">{resultType}</span>
+            형을 선호하시는군요!
           </p>
         </div>
 

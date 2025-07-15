@@ -21,7 +21,7 @@ export default function SurveyPage() {
 
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const intervalRef = useRef(null); // 🔁 polling을 위한 ref
-  const userId = 13;
+  const userId = 10;
   const surveyId = 1;
 
   // React Query(useQuery)를 이용한 GET 요청 코드
@@ -90,7 +90,16 @@ export default function SurveyPage() {
   // POST 제출 mutation
   const submitMutation = useMutation({
     mutationFn: async (answers) => {
-      const payload = { userId: `${userId}`, surveyId: 1, answers };
+      console.log("Answers: ", answers);
+
+      const sortedAnswers = answers.sort((a, b) => a.questionId - b.questionId);
+
+      console.log("sortedAnswers: ", sortedAnswers);
+      const payload = {
+        userId,
+        surveyId: 1,
+        answers: sortedAnswers,
+      };
       return await axios.post("/api/v1/result/submit", payload);
     },
     onSuccess: () => {
@@ -121,7 +130,7 @@ export default function SurveyPage() {
     },
     onError: (err) => {
       console.error(err);
-      alert("❌ [POST] 설문결과 제출 중 오류 발생");
+      alert("❌ [POST] 설문결과 제출 중 오류 발생", err);
     },
   });
 
