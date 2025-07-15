@@ -22,12 +22,7 @@ export default function IntroPage() {
         </button>
       }
       primaryBtn={
-        <Button
-          primary
-          rounded
-          onClick={() => navigate("/survey")}
-          className="text-[2rem]"
-        >
+        <Button primary rounded onClick={() => navigate("/survey")}>
           시작하기
         </Button>
       }
