@@ -5,6 +5,7 @@ export default function Question({
   displayOrder,
   content,
   choices,
+  onSelect,
 }) {
   const [selected, setSelected] = useState(null);
 
@@ -32,7 +33,10 @@ export default function Question({
                       : "border-grey-30"
                   }
                 `}
-                onChange={() => setSelected(choice.choiceId)}
+                onChange={() => {
+                  setSelected(choice.choiceId);
+                  onSelect(questionId, choice.choiceId);
+                }}
               />
               <span
                 className={`text-[1.4rem] mt-2 text-center ${

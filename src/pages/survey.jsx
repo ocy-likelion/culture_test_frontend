@@ -4,22 +4,25 @@ import Modal from "@components/Modal";
 import Question from "@components/Question";
 import Spinner from "@components/Spinner";
 import useAxiosInstance from "@hooks/useAxiosInstance";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAnswersStore from "@zustand/useAnswersStore";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
 
 const PAGE_SIZE = 2;
 
 export default function SurveyPage() {
   const [currentPage, setCurrentPage] = useState(0);
-  const { answers } = useAnswersStore();
+  const { answers, setAnswer, resetAnswer } = useAnswersStore();
 
   const axios = useAxiosInstance();
   const navigate = useNavigate();
-  const isAnalysis = false; // 유형 분석 요청(POST) 시 세팅되는 isLoading: true로 변경 예정
+
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const intervalRef = useRef(null); // 🔁 polling을 위한 ref
+  const userId = 13;
+  const surveyId = 1;
 
   // React Query(useQuery)를 이용한 GET 요청 코드
   const {
@@ -37,7 +40,7 @@ export default function SurveyPage() {
     staleTime: 1000 * 10,
     keepPreviousData: true,
   });
-  console.log("api 결과: ", questions);
+  // console.log("api 결과: ", questions);
 
   // if (isLoading) return <p>로딩 중...</p>;
   if (isError) return <p>문제가 발생했습니다.</p>;
@@ -71,10 +74,56 @@ export default function SurveyPage() {
   const handlePrev = () => {
     if (currentPage > 0) {
       setCurrentPage((prev) => prev - 1);
+    } else if (currentPage === 0) {
+      navigate("/intro");
+      resetAnswer();
+      console.log("답변 리셋");
     } else {
       navigate(-1);
     }
   };
+
+  const handleSelect = (questionId, choiceId) => {
+    setAnswer({ questionId, choiceId });
+  };
+
+  // POST 제출 mutation
+  const submitMutation = useMutation({
+    mutationFn: async (answers) => {
+      const payload = { userId: `${userId}`, surveyId: 1, answers };
+      return await axios.post("/api/v1/result/submit", payload);
+    },
+    onSuccess: () => {
+      setIsAnalyzing(true); // 로딩 UI 띄우기
+
+      // ✅ POST 성공 후 polling 시작
+      intervalRef.current = setInterval(async () => {
+        try {
+          const res = await axios.get(
+            `/api/v1/result/latest/scoresAndPercentages/${userId}/survey/${surveyId}`
+          );
+          console.log("📦 polling 요청 응답:", res.data);
+
+          if (res.data.status === "done") {
+            console.log("✅ 분석 완료: polling 종료");
+            clearInterval(intervalRef.current);
+            setIsAnalyzing(false); // 로딩 종료
+            navigate("/results", { state: res.data });
+          }
+        } catch (err) {
+          console.error("❌ [GET] Polling 중 오류", err);
+          clearInterval(intervalRef.current);
+        }
+      }, 3000);
+
+      // polling 시작 로그 확인용 코드
+      console.log("⏱️ polling 시작됨 (3초 간격)");
+    },
+    onError: (err) => {
+      console.error(err);
+      alert("❌ [POST] 설문결과 제출 중 오류 발생");
+    },
+  });
 
   return (
     <SurveyLayout
@@ -89,13 +138,22 @@ export default function SurveyPage() {
         </p>
       }
       rightSlot={
-        <button onClick={() => navigate("/intro")}>
+        <button
+          onClick={() => {
+            navigate("/intro");
+            resetAnswer();
+          }}
+        >
           <img src={`/xbtn.svg`} className="w-[3.6rem] aspect-square" />
         </button>
       }
       primaryBtn={
         currentPage + 1 === questions?.totalPages ? (
-          <Button primary rounded>
+          <Button
+            primary
+            rounded
+            onClick={() => submitMutation.mutate(answers)}
+          >
             결과 제출
           </Button>
         ) : (
@@ -133,13 +191,14 @@ export default function SurveyPage() {
                 displayOrder={question.displayOrder}
                 content={question.content}
                 choices={question.choices}
+                onSelect={handleSelect}
               />
             ))}
           </div>
         </>
       )}
 
-      {isAnalysis && (
+      {isAnalyzing && (
         <Modal>
           <div className="flex flex-col items-center gap-4">
             <Spinner />

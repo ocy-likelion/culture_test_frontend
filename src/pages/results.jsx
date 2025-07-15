@@ -1,34 +1,12 @@
 import Button from "@components/Button";
 import ChartCanvas from "@components/ChartCanvas";
 import SurveyLayout from "@components/layouts/SurveyLayout";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function ResultsPage() {
   const navigate = useNavigate();
-
-  // 2️⃣ 실제 K-means 결과로 받을 데이터 형식
-  const rawData = [
-    {
-      label: "업무 능력",
-      left: { type: "즉시전력형", score: 74 },
-      right: { type: "성장가능형", score: 26 },
-    },
-    {
-      label: "갈등 대응 방식",
-      left: { type: "직면형", score: 62 },
-      right: { type: "숙고형", score: 38 },
-    },
-    {
-      label: "성향 및 인성",
-      left: { type: "혁신적", score: 35 },
-      right: { type: "전통적", score: 65 },
-    },
-    {
-      label: "평가 기준",
-      left: { type: "객관적 자료", score: 49 },
-      right: { type: "주관적 인상", score: 51 },
-    },
-  ];
+  const location = useLocation();
+  const { resultType, result } = location.state;
 
   return (
     <SurveyLayout
@@ -67,18 +45,24 @@ export default function ResultsPage() {
         </Button>
       }
     >
-      <div className="flex flex-col justify-between items-center bg-white pt-[3rem] rounded-[0.6rem]">
+      <div className="flex flex-col items-center bg-white pt-[3rem] rounded-[0.6rem]">
         <div className="text-center font-medium text-[2.4rem] leading-[135%]">
           <p>강민지 담당자님은</p>
           <p>
-            <span className="text-primary-30">관계 조율자형</span>이시군요!
+            <span className="text-primary-30">{resultType}</span>형이시군요!
           </p>
         </div>
 
-        <img src="/result-big.svg" className="w-[24rem] aspect-square" />
+        <div className="aspect-square w-[24rem] relative leading-none">
+          <img
+            src="/temp-pic.svg"
+            className="absolute top-0 left-0 w-full h-full object-contain"
+            alt="결과유형 이미지"
+          />
+        </div>
       </div>
 
-      <ChartCanvas rawData={rawData} />
+      <ChartCanvas chartData={result} />
 
       <div className=" bg-white rounded-[0.6rem] leading-[200%] tracking-[-2.3%] py-[2rem] px-[1.6rem]">
         <ul className="list-disc pl-[2rem] space-y-[0.6rem] text-grey-90 text-[1.4rem] leading-[160%]">
