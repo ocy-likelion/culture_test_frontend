@@ -12,7 +12,7 @@ export default function Login() {
             kakao
             rounded
             onClick={() => navigate("/intro")}
-            className="text-[1.5rem] lg:text-[1.6rem]"
+            className="text-[1.4rem] lg:text-[1.6rem]"
           >
             <img src="/kakao.svg" className="w-[2rem] aspect-square mr-2" />
             카카오로 시작하기
@@ -23,7 +23,7 @@ export default function Login() {
             google
             rounded
             onClick={() => console.log("GOOGLE!")}
-            className="text-[1.5rem] lg:text-[1.6rem] xl:bg-red-200"
+            className="text-[1.4rem] lg:text-[1.6rem]"
           >
             <img src="/google.svg" className="w-[1.8rem] aspect-square mr-2" />
             구글로 시작하기

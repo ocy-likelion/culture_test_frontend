@@ -33,10 +33,12 @@ export default function HistoryPage() {
   return (
     <SurveyLayout
       containerCN="bg-grey-20"
-      mainCN="px-[2rem] pt-[8rem] pb-[2rem] 2xl:gap-[2rem]"
       leftSlot={
         <button onClick={() => navigate(-1)}>
-          <img src={`/chevron-left.svg`} className="w-[3.2rem] aspect-square" />
+          <img
+            src={`/chevron-left.svg`}
+            className="w-[2.4rem] lg:w-[3.2rem] aspect-square"
+          />
         </button>
       }
       middleSlot={<img src={`/logo.svg`} className="w-[16rem]" />}
@@ -44,12 +46,12 @@ export default function HistoryPage() {
         <button>
           <img
             src={`/share.svg`}
-            className="w-[3.2rem] aspect-square"
+            className="w-[2.4rem] lg:w-[3.2rem] aspect-square"
             onClick={() => navigate("/mypage")}
           />
         </button>
       }
-      mainCN="px-[2rem] pt-[8rem] gap-[1.6rem] xl:gap-[2rem] pb-[1rem]"
+      mainCN="px-[2rem] pt-[8rem] gap-[1.6rem] xl:gap-[2rem] pb-[2rem]"
     >
       <ResultDetail result={result} resultType={resultType} history />
     </SurveyLayout>

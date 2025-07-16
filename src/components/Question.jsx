@@ -49,7 +49,7 @@ export default function Question({
               </span>
             </label>
           ))}
-          <div className="absolute top-[1rem] left-1/2 -translate-x-1/2 w-[82%] xl:w-[88%] h-[0.16rem] bg-grey-50 z-[-1]" />
+          <div className="absolute top-[1rem] left-1/2 -translate-x-1/2 w-[90%] h-[0.16rem] bg-grey-50 z-[-1]" />
         </div>
       </div>
     </>

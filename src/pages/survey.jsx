@@ -72,26 +72,6 @@ export default function SurveyPage() {
 
   const handleNext = () => {
     if (!checkUnanswered()) return;
-    // const currentQuestionIds =
-    //   questions?.content.map((q) => q.questionId) || [];
-
-    // const unanswered = currentQuestionIds.filter(
-    //   (id) => !answers.some((ans) => ans.questionId === id)
-    // );
-
-    // if (unanswered.length > 0) {
-    //   toast.error("모든 문항에 응답해주세요!", {
-    //     icon: "⚠️",
-    //     style: {
-    //       background: "#fee2e2",
-    //       color: "#b91c1c",
-    //       fontWeight: "500",
-    //       fontSize: "1.6rem",
-    //       border: "2px solid #fca5a5",
-    //     },
-    //   });
-    //   return;
-    // }
 
     if (currentPage < questions?.totalPages - 1)
       setCurrentPage((prev) => prev + 1);
@@ -232,7 +212,7 @@ export default function SurveyPage() {
           </div>
 
           {/* Question */}
-          <div className="flex flex-col gap-[6rem] lg:gap-[12rem]">
+          <div className="flex flex-col gap-[6rem] md:gap-[14rem] lg:gap-[8rem]">
             {questions?.content?.map((question) => (
               <Question
                 key={question.questionId}
