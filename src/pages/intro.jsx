@@ -33,7 +33,7 @@ export default function IntroPage() {
           시작하기
         </Button>
       }
-      mainCN="pt-[6rem] px-[2rem] items-center gap-[2rem] lg:gap-[6rem]"
+      mainCN="pt-[6rem] px-[2rem] items-center gap-[2rem]"
       footerCN="static"
     >
       <div

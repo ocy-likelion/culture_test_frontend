@@ -2,12 +2,6 @@
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    screens: {
-      tablet: "640px", // sm
-      laptop: "1024px", // lg
-      desktop: "1280px", // xl
-    },
-
     extend: {
       colors: {
         background: "#EAEEF1",

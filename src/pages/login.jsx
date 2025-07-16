@@ -23,13 +23,13 @@ export default function Login() {
             google
             rounded
             onClick={() => console.log("GOOGLE!")}
-            className="text-[1.4rem] lg:text-[1.6rem]"
+            className="text-[1.4rem] lg:text-[1.6rem] "
           >
             <img src="/google.svg" className="w-[1.8rem] aspect-square mr-2" />
             구글로 시작하기
           </Button>
         }
-        mainCN="pt-[6rem] items-center gap-[2rem] lg:gap-[6rem]"
+        mainCN="pt-[6rem] items-center gap-[2rem]"
       >
         <div className="flex flex-col justify-center items-center gap-[2rem] mt-[4rem] lg:mt-[8rem]">
           <img src="/logo.svg" className="w-[20rem] lg:w-[25rem]" />
@@ -39,7 +39,7 @@ export default function Login() {
         </div>
 
         <div>
-          <img src="/login-main.svg" className="w-[30rem] lg:w-[40rem]" />
+          <img src="/login-main.svg" className="w-[30rem] lg:w-[36rem]" />
         </div>
       </SurveyLayout>
     </>
