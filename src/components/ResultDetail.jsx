@@ -1,18 +1,25 @@
 import ChartCanvas from "@components/ChartCanvas";
 
-export default function ResultDetail({ result, resultType }) {
+export default function ResultDetail({
+  result,
+  resultType,
+  className,
+  history,
+}) {
   return (
     <>
-      <div className="flex flex-col items-center bg-white pt-[3rem] rounded-[0.6rem]">
-        <div className="text-center font-medium text-[2rem] lg:text-[2.4rem] leading-[135%]">
+      <div
+        className={`flex items-center bg-white rounded-[0.6rem] px-[1.4rem] ${className}`}
+      >
+        <div className="text-center font-medium text-[1.7rem] lg:text-[2.4rem] leading-[135%]">
           <p>홍길동 담당자님은</p>
           <p>
             <span className="text-primary-30">{resultType}</span>
-            형을 선호하시는군요!
+            {history ? "형을 선호하셨군요!" : "형을 선호하시는군요!"}
           </p>
         </div>
 
-        <div className="aspect-square w-[20rem] lg:w-[24rem] relative leading-none">
+        <div className="aspect-square w-[14rem] lg:w-[24rem] relative leading-none">
           <img
             src="/temp-pic.svg"
             className="absolute top-0 left-0 w-full h-full object-contain"

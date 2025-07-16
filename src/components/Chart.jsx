@@ -91,7 +91,11 @@ export default function Chart({ label, left, right, color }) {
   if (!chartData) return null;
 
   return (
-    <div className="w-full flex flex-col items-center">
+    // flex-[2_1_0%]: 중앙 Chart에 가중치를 더 주고 유연하게 확장
+    // flex-grow: 2;
+    // flex-shrink: 1;
+    // flex-basis: 0%;
+    <div className="w-full min-w-0 flex flex-col flex-grow items-center">
       {/* 가운데 레이블 */}
       <div className="text-center text-grey-90 text-[1.4rem]">{label}</div>
 

@@ -45,7 +45,7 @@ export default function SurveyPage() {
   // if (isLoading) return <p>로딩 중...</p>;
   if (isError) return <p>문제가 발생했습니다.</p>;
 
-  const handleNext = () => {
+  const checkUnanswered = () => {
     const currentQuestionIds =
       questions?.content.map((q) => q.questionId) || [];
 
@@ -64,8 +64,34 @@ export default function SurveyPage() {
           border: "2px solid #fca5a5",
         },
       });
-      return;
+      return false;
     }
+
+    return true;
+  };
+
+  const handleNext = () => {
+    if (!checkUnanswered()) return;
+    // const currentQuestionIds =
+    //   questions?.content.map((q) => q.questionId) || [];
+
+    // const unanswered = currentQuestionIds.filter(
+    //   (id) => !answers.some((ans) => ans.questionId === id)
+    // );
+
+    // if (unanswered.length > 0) {
+    //   toast.error("모든 문항에 응답해주세요!", {
+    //     icon: "⚠️",
+    //     style: {
+    //       background: "#fee2e2",
+    //       color: "#b91c1c",
+    //       fontWeight: "500",
+    //       fontSize: "1.6rem",
+    //       border: "2px solid #fca5a5",
+    //     },
+    //   });
+    //   return;
+    // }
 
     if (currentPage < questions?.totalPages - 1)
       setCurrentPage((prev) => prev + 1);
@@ -171,7 +197,11 @@ export default function SurveyPage() {
           <Button
             primary
             rounded
-            onClick={() => submitMutation.mutate(answers)}
+            onClick={() => {
+              if (!checkUnanswered()) return;
+              submitMutation.mutate(answers);
+              resetAnswer();
+            }}
           >
             결과 제출
           </Button>
@@ -222,10 +252,10 @@ export default function SurveyPage() {
           <div className="flex flex-col items-center gap-4">
             <Spinner />
             <div className="text-center text-[1.6rem]">
-              <p className="font-medium text-grey-90 text-[1.6rem] mb-2">
+              <p className="font-medium text-grey-90 text-[1.4rem] lg:text-[1.6rem] mb-2">
                 결과 분석 중...
               </p>
-              <p className="font-light text-grey-80 text-[1.2rem]">
+              <p className="font-light text-grey-80 text-[1rem] lg:text-[1.2rem]">
                 잠시만 기다려주세요.
               </p>
             </div>

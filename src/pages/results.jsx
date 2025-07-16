@@ -33,7 +33,7 @@ export default function ResultsPage() {
         <button onClick={() => navigate(-1)}>
           <img
             src={`/share.svg`}
-            className="w-[2.8rem] lg:w-[3.6rem] aspect-square"
+            className="w-[2.8rem] lg:w-[3.2rem] aspect-square"
           />
         </button>
       }
@@ -57,7 +57,11 @@ export default function ResultsPage() {
         </Button>
       }
     >
-      <ResultDetail result={result} resultType={resultType} />
+      <ResultDetail
+        result={result}
+        resultType={resultType}
+        className="flex-col pt-[3rem]"
+      />
     </SurveyLayout>
   );
 }

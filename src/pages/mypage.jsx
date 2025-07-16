@@ -130,10 +130,10 @@ export default function MyPage() {
       {isModalOpen && (
         <Modal>
           <div className="flex flex-col gap-3 items-center">
-            <p className="text-grey-90 font-medium text-[1.8rem]">
+            <p className="text-grey-90 font-medium text-[1.6rem] lg:text-[1.8rem]">
               정말 탈퇴하시겠어요?
             </p>
-            <p className="text-grey-80 text-[1.2rem] leading-[150%] text-center">
+            <p className="text-grey-80 text-[1rem] lg:text-[1.2rem] leading-[150%] text-center">
               지금 탈퇴하시면 테스트 결과 및 기록이
               <br />
               모두 삭제되고 복구가 불가능합니다.
@@ -144,14 +144,14 @@ export default function MyPage() {
             <Button
               rounded
               onClick={() => setIsModalOpen(false)}
-              className="bg-grey-30 text-grey-70 h-[4rem] leading-[4rem] text-[1.6rem]"
+              className="bg-grey-30 text-grey-70 h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
             >
               머무르기
             </Button>
             <Button
               primary
               rounded
-              className="h-[4rem] leading-[4rem] text-[1.6rem]"
+              className="h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
             >
               떠나기
             </Button>
@@ -162,8 +162,10 @@ export default function MyPage() {
       {logout && (
         <Modal>
           <div className="flex flex-col gap-3 items-center">
-            <p className="text-grey-90 font-medium text-[1.8rem]">로그아웃</p>
-            <p className="text-grey-80 text-[1.2rem] leading-[150%] text-center">
+            <p className="text-grey-90 font-medium text-[1.6rem] lg:text-[1.8rem]">
+              로그아웃
+            </p>
+            <p className="text-grey-80 text-[1rem] lg:text-[1.2rem] leading-[150%] text-center">
               정말 로그아웃 하시겠습니까?
             </p>
           </div>
@@ -172,14 +174,14 @@ export default function MyPage() {
             <Button
               rounded
               onClick={() => setLogout(false)}
-              className="bg-grey-30 text-grey-70 h-[4rem] leading-[4rem] text-[1.6rem]"
+              className="bg-grey-30 text-grey-70 h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
             >
               취소
             </Button>
             <Button
               primary
               rounded
-              className="h-[4rem] leading-[4rem] text-[1.6rem]"
+              className="h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
             >
               로그아웃
             </Button>
