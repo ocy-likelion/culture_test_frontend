@@ -137,12 +137,19 @@ export default function SurveyPage() {
   return (
     <SurveyLayout
       leftSlot={
-        <button onClick={handlePrev}>
-          <img src={`/chevron-left.svg`} className="w-[3.6rem] aspect-square" />
-        </button>
+        currentPage === 0 ? (
+          " "
+        ) : (
+          <button onClick={handlePrev}>
+            <img
+              src={`/chevron-left.svg`}
+              className="w-[2.4rem] lg:w-[3.6rem] aspect-square"
+            />
+          </button>
+        )
       }
       middleSlot={
-        <p className="text-[1.8rem] text-grey-90">
+        <p className="text-[1.5rem] lg:text-[1.8rem] text-grey-90">
           {currentPage + 1}/{questions?.totalPages}
         </p>
       }
@@ -153,7 +160,10 @@ export default function SurveyPage() {
             resetAnswer();
           }}
         >
-          <img src={`/xbtn.svg`} className="w-[3.6rem] aspect-square" />
+          <img
+            src={`/xbtn.svg`}
+            className="w-[2.4rem] lg:w-[3.6rem] aspect-square"
+          />
         </button>
       }
       primaryBtn={
@@ -171,7 +181,7 @@ export default function SurveyPage() {
           </Button>
         )
       }
-      mainCN="px-[2rem]"
+      mainCN="pt-[6rem] px-[2rem] pb-[10rem] gap-[1.6rem] lg:gap-[2rem]"
     >
       {isLoading && !questions ? (
         // <div className="flex w-full justify-center items-center min-h-[90vh]">
@@ -181,7 +191,7 @@ export default function SurveyPage() {
       ) : (
         <>
           {/* Progress Bar */}
-          <div className="w-full h-[0.6rem] bg-primary-10 rounded-full overflow-hidden mt-8">
+          <div className="w-full h-[0.6rem] bg-primary-10 rounded-full overflow-hidden mt-3 lg:mt-8">
             <div
               className="bg-primary-30 h-full transition-all duration-300 ease-in-out rounded-full"
               style={{
@@ -192,7 +202,7 @@ export default function SurveyPage() {
           </div>
 
           {/* Question */}
-          <div className="flex flex-col gap-[12rem]">
+          <div className="flex flex-col gap-[6rem] lg:gap-[12rem]">
             {questions?.content?.map((question) => (
               <Question
                 key={question.questionId}

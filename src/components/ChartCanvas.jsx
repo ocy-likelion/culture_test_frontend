@@ -9,7 +9,7 @@ export default function ChartCanvas({ chartData }) {
   ];
 
   return (
-    <div className="rounded-[0.6rem] flex flex-col justify-between items-center bg-white py-[3.6rem] px-[2.8rem] gap-[1.2rem]">
+    <div className="w-full rounded-[0.6rem] flex flex-col justify-between items-center bg-white py-[3.6rem] px-[2.8rem] gap-[1.2rem]">
       {chartData.map((item, index) => (
         <div key={index} className="flex items-end w-full">
           {/* 왼쪽 */}
@@ -21,8 +21,8 @@ export default function ChartCanvas({ chartData }) {
                       : "text-grey-70"
                   }`}
           >
-            <p className="text-[1.7rem]">{item.left.score}%</p>
-            <p className="text-[1.4rem]">{item.left.type}</p>
+            <p className="text-[1.5rem] lg:text-[1.7rem]">{item.left.score}%</p>
+            <p className="text-[1.2rem] lg:text-[1.4rem]">{item.left.type}</p>
           </div>
 
           <Chart
@@ -42,8 +42,10 @@ export default function ChartCanvas({ chartData }) {
                       : "text-grey-70"
                   }`}
           >
-            <p className="text-[1.7rem]">{item.right.score}%</p>
-            <p className="text-[1.4rem]">{item.right.type}</p>
+            <p className="text-[1.5rem] lg:text-[1.7rem]">
+              {item.right.score}%
+            </p>
+            <p className="text-[1.2rem] lg:text-[1.4rem]">{item.right.type}</p>
           </div>
         </div>
       ))}

@@ -24,9 +24,7 @@ export default function SurveyLayout({
       />
       {/* 콘텐츠 영역 */}
       {/* Tailwind에서는 items-* 클래스는 서로 덮어쓰기 되지 않고 공존 => mainClassName으로 스타일링 조정 */}
-      <main
-        className={`flex flex-col flex-1 overflow-y-auto gap-[2rem] 2xl:gap-[10rem] pt-[6rem] ${mainCN}`}
-      >
+      <main className={`flex flex-col flex-1 overflow-y-auto ${mainCN}`}>
         {children}
       </main>
       {/* 하단 버튼 영역 */}

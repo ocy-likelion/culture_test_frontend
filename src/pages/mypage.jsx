@@ -1,7 +1,7 @@
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import Modal from "@components/Modal";
-import TestEntry from "@components/TestEntry";
+import ResultEntry from "@components/ResultEntry";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -47,16 +47,21 @@ export default function MyPage() {
     <SurveyLayout
       leftSlot={
         <button onClick={() => navigate(-1)}>
-          <img src={`/chevron-left.svg`} className="w-[3.6rem] aspect-square" />
+          <img
+            src={`/chevron-left.svg`}
+            className="w-[2.4rem] lg:w-[3.6rem] aspect-square"
+          />
         </button>
       }
-      middleSlot={<h1 className="text-[1.8rem] font-semibold">MY</h1>}
+      middleSlot={
+        <h1 className="text-[1.5rem] lg:text-[1.8rem] font-semibold">MY</h1>
+      }
       containerCN="bg-grey-20"
-      mainCN="gap-[1rem] 2xl:gap-[2rem]" // myPage에서만 간격 좁게
+      mainCN="pt-[5rem] gap-[1.2rem] lg:gap-[2rem]" // myPage에서만 간격 좁게
       footerCN="bg-white static"
       primaryBtn={
         <button
-          className={`underline text-[1.2rem] text-grey-60`}
+          className={`underline text-[1rem] lg:text-[1.2rem] text-grey-60`}
           onClick={() => setIsModalOpen(true)}
         >
           회원탈퇴
@@ -65,17 +70,21 @@ export default function MyPage() {
     >
       <div className="bg-white flex gap-7 items-center p-[2rem]">
         <div>
-          <img src="/profile.svg" className="w-[8rem]" />
+          <img src="/profile.svg" className="w-[6rem] lg:w-[8rem]" />
         </div>
 
         <div className="w-full flex justify-between items-center">
-          <div className="flex flex-col gap-4">
-            <span className="font-medium text-[2rem]">홍길동</span>
-            <span className="text-grey-70 text-[1.6rem]">kakao 로그인</span>
+          <div className="flex flex-col gap-2 lg:gap-4">
+            <span className="font-medium text-[1.6rem] lg:text-[2rem]">
+              홍길동
+            </span>
+            <span className="text-grey-70  text-[1.4rem] lg:text-[1.6rem]">
+              kakao 로그인
+            </span>
           </div>
 
           <button
-            className="px-[1.4rem] py-[0.6rem] text-grey-70 border text-[1.4rem] font-medium rounded-md border-grey-30"
+            className="px-[1rem] lg:px-[1.4rem] py-[0.5rem] lg:py-[0.6rem] text-grey-70 border text-[1rem] lg:text-[1.4rem] font-medium rounded-md border-grey-30"
             onClick={() => setLogout(true)}
           >
             로그아웃
@@ -83,13 +92,15 @@ export default function MyPage() {
         </div>
       </div>
 
-      <div className="bg-white flex flex-col flex-1 gap-7 p-[2rem]">
-        <h2 className="font-semibold text-[2.2rem]">최근 테스트 내역</h2>
+      <div className="bg-white flex flex-col flex-1 gap-5 lg:gap-7 p-[2rem]">
+        <h2 className="font-semibold text-[1.8rem] lg:text-[2.2rem]">
+          최근 테스트 내역
+        </h2>
 
         {/* 공통 컴포넌트화 */}
         {testResults.length > 0 ? (
           testResults.map((result) => (
-            <TestEntry
+            <ResultEntry
               key={result.id}
               type={result.type}
               date={result.date}

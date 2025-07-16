@@ -12,10 +12,10 @@ export default function Question({
   return (
     <>
       <div className="w-full flex flex-col gap-2">
-        <h1 className="font-medium text-primary-30 text-[2.2rem]">
+        <h1 className="font-medium text-primary-30 text-[1.8rem] lg:text-[2.2rem]">
           Q{displayOrder}
         </h1>
-        <p className="text-grey-90 text-[2rem] font-medium leading-[135%]">
+        <p className="text-grey-90 text-[1.6rem] lg:text-[2rem] font-medium leading-[135%]">
           {content}
         </p>
 
@@ -39,7 +39,7 @@ export default function Question({
                 }}
               />
               <span
-                className={`text-[1.4rem] mt-2 text-center ${
+                className={`text-[1rem] lg:text-[1.4rem] mt-2 text-center ${
                   selected === choice.choiceId
                     ? "text-primary-30 font-medium"
                     : "text-grey-60"
@@ -49,7 +49,7 @@ export default function Question({
               </span>
             </label>
           ))}
-          <div className="absolute top-[1rem] left-1/2 -translate-x-1/2 w-[88%] h-[0.16rem] bg-grey-50 z-[-1]" />
+          <div className="absolute top-[1rem] left-1/2 -translate-x-1/2 w-[82%] xl:w-[88%] h-[0.16rem] bg-grey-50 z-[-1]" />
         </div>
       </div>
     </>

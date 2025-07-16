@@ -18,7 +18,7 @@ function Button({
 }) {
   const classes = classNames(
     rest.className,
-    "flex items-center justify-center w-full h-[4.8rem] 2xl:h-[6rem] transition-all duration-150 leading-[4.2rem] 2xl:leading-[6rem] tracking-[0%] border font-medium",
+    "flex items-center justify-center w-full h-[4.4rem] xl:h-[4.8rem] 2xl:h-[6rem] transition-all duration-150 leading-[4.2rem] 2xl:leading-[6rem] tracking-[0%] border font-medium text-[1.4rem] xl:text-[1.6rem]",
     {
       "opacity-80 cursor-not-allowed": loading,
       "border-primary-30 bg-primary-30 text-white": primary,
