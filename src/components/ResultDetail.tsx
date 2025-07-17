@@ -1,3 +1,4 @@
+import { ChartData } from "@/models/common";
 import ChartCanvas from "@components/ChartCanvas";
 
 export default function ResultDetail({
@@ -5,7 +6,7 @@ export default function ResultDetail({
   resultType,
   className,
   history,
-}) {
+}: ChartData) {
   return (
     <>
       <div

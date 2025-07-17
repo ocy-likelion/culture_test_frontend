@@ -1,6 +1,6 @@
-// components/shared/Button.tsx
 import classNames from "classnames";
 import { GoSync } from "react-icons/go";
+import { ButtonProps } from "@/models/common";
 
 function Button({
   children,
@@ -15,7 +15,19 @@ function Button({
   rounded,
   loading,
   ...rest
-}) {
+}: ButtonProps) {
+  if (
+    Number(!!primary) +
+      Number(!!secondary) +
+      // Number(!!success) +
+      // Number(!!warning) +
+      // Number(!!danger)
+      0 >
+    1
+  ) {
+    console.warn("Only one of primary, secondary, etc. should be true");
+  }
+
   const classes = classNames(
     rest.className,
     "flex items-center justify-center w-full h-[4.4rem] xl:h-[4.8rem] 2xl:h-[6rem] transition-all duration-150 leading-[4.2rem] 2xl:leading-[6rem] tracking-[0%] border font-medium text-[1.4rem] xl:text-[1.6rem]",
@@ -44,21 +56,5 @@ function Button({
     </button>
   );
 }
-
-Button.propTypes = {
-  checkVariationValue: ({ primary, secondary, success, warning, danger }) => {
-    const count =
-      Number(!!primary) +
-      Number(!!secondary) +
-      Number(!!warning) +
-      Number(!!success) +
-      Number(!!danger);
-    if (count > 1) {
-      return new Error(
-        "Only one of primary, secondary, success, warning, danger can be true"
-      );
-    }
-  },
-};
 
 export default Button;

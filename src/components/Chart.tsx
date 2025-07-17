@@ -2,6 +2,9 @@
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { ChartProps } from "@/models/common";
+import { ChartData, ChartOptions } from "chart.js";
+
 import {
   Chart as ChartJS,
   BarElement,
@@ -18,8 +21,8 @@ ChartJS.register(
   ChartDataLabels
 );
 
-export default function Chart({ label, left, right, color }) {
-  const [chartData, setChartData] = useState(null);
+export default function Chart({ label, left, right, color }: ChartProps) {
+  const [chartData, setChartData] = useState<ChartData<"bar"> | null>(null);
 
   useEffect(() => {
     const leftScore = left.score;
@@ -43,14 +46,17 @@ export default function Chart({ label, left, right, color }) {
     };
 
     setChartData({
-      labels: [label],
+      labels: [label], // 카테고리 배열 (현재는 label 하나로, 개별 막대)
       datasets: [
         {
           label: "Left",
-          data: [leftScore],
+          data: [leftScore], // 카테고리 하나이므로 점수값 하나만
           backgroundColor: [leftColor],
           borderRadius: leftRadii,
           borderSkipped: false,
+          categoryPercentage: 0.5, //	카테고리 안의 절반만 사용 (슬림하고 여유)
+          barPercentage: 1.0, // 여러 막대 중 이 막대가 최대 너비 차지
+          barThickness: 6,
         },
         {
           label: "Right",
@@ -58,15 +64,17 @@ export default function Chart({ label, left, right, color }) {
           backgroundColor: [rightColor],
           borderRadius: rightRadii,
           borderSkipped: false,
+          categoryPercentage: 0.5,
+          barPercentage: 1.0,
+          barThickness: 6,
         },
       ],
     });
   }, [label, left, right, color]);
 
-  const options = {
+  const options: ChartOptions<"bar"> = {
     indexAxis: "y",
     responsive: true,
-    barThickness: 6,
     maintainAspectRatio: false, // ✅ 이걸 추가하면 너비는 100% 유지됨
     scales: {
       x: {
@@ -77,8 +85,6 @@ export default function Chart({ label, left, right, color }) {
       y: {
         stacked: true,
         display: false,
-        categoryPercentage: 0.5,
-        barPercentage: 1.0,
       },
     },
     plugins: {
@@ -91,10 +97,6 @@ export default function Chart({ label, left, right, color }) {
   if (!chartData) return null;
 
   return (
-    // flex-[2_1_0%]: 중앙 Chart에 가중치를 더 주고 유연하게 확장
-    // flex-grow: 2;
-    // flex-shrink: 1;
-    // flex-basis: 0%;
     <div className="w-full min-w-0 flex flex-col flex-grow items-center">
       {/* 가운데 레이블 */}
       <div className="text-center text-grey-90 text-[1.4rem]">{label}</div>

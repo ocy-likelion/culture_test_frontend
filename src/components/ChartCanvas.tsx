@@ -1,6 +1,7 @@
+import { ChartCanvasProps } from "@/models/common";
 import Chart from "@components/Chart";
 
-export default function ChartCanvas({ chartData }) {
+export default function ChartCanvas({ chartData }: ChartCanvasProps) {
   const colorPalette = [
     { hex: "#FF7E8F", text: "text-type-pink" },
     { hex: "#AD7EFF", text: "text-type-purple" },

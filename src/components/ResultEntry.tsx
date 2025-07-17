@@ -1,6 +1,7 @@
+import { ResultData } from "@/models/common";
 import { useNavigate } from "react-router-dom";
 
-export default function ResultEntry({ type, date, image }) {
+export default function ResultEntry({ type, date, image }: ResultData) {
   const navigate = useNavigate();
 
   return (

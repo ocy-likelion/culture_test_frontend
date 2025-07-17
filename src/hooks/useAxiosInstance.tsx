@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
-export default function useAxiosInstance() {
+export default function useAxiosInstance(): AxiosInstance {
   const instance = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL,
+    baseURL: import.meta.env.VITE_API_BASE_URL as string,
     timeout: 1000 * 15,
     headers: {
       "Content-Type": "application/json",

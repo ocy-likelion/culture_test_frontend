@@ -1,4 +1,10 @@
-export default function Header({ leftSlot, middleSlot, rightSlot }) {
+import { HeaderProps } from "@/models/survey";
+
+export default function Header({
+  leftSlot,
+  middleSlot,
+  rightSlot,
+}: HeaderProps) {
   if (!leftSlot && !middleSlot && !rightSlot) return null;
 
   return (

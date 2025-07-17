@@ -1,3 +1,4 @@
+import { QuestionProps } from "@/models/common";
 import { useState } from "react";
 
 export default function Question({
@@ -6,8 +7,8 @@ export default function Question({
   content,
   choices,
   onSelect,
-}) {
-  const [selected, setSelected] = useState(null);
+}: QuestionProps) {
+  const [selected, setSelected] = useState<number | null>(null);
 
   return (
     <>

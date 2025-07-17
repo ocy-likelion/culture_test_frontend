@@ -1,5 +1,6 @@
-import Footer from "@components/layouts/Footer";
+import Footer from "@/components/layouts/Footer";
 import Header from "@components/layouts/Header";
+import { SurveyLayoutProps } from "@/models/survey";
 
 export default function SurveyLayout({
   children,
@@ -11,7 +12,7 @@ export default function SurveyLayout({
   containerCN = "bg-white",
   mainCN = "",
   footerCN = "bg-white",
-}) {
+}: SurveyLayoutProps) {
   return (
     <div
       className={`max-w-[640px] mx-auto flex flex-col min-h-screen ${containerCN}`}

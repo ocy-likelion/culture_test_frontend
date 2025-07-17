@@ -2,7 +2,7 @@ import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import Modal from "@components/Modal";
 import Question from "@components/Question";
-import Spinner from "@components/Spinner";
+import Spinner from "@/components/Spinner";
 import useAxiosInstance from "@hooks/useAxiosInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAnswersStore from "@zustand/useAnswersStore";

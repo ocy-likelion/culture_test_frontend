@@ -1,6 +1,10 @@
-import PropTypes from "prop-types";
+import { FooterProps } from "@/models/survey";
 
-export default function Footer({ primaryBtn, secondaryBtn, footerCN }) {
+export default function Footer({
+  primaryBtn,
+  secondaryBtn,
+  footerCN = "",
+}: FooterProps) {
   if (!primaryBtn && !secondaryBtn) {
     return null;
   }
@@ -18,8 +22,3 @@ export default function Footer({ primaryBtn, secondaryBtn, footerCN }) {
     </footer>
   );
 }
-
-Footer.propTypes = {
-  primaryBtn: PropTypes.node.isRequired, // JSX 포함, string, number 등 모두 가능
-  secondaryBtn: PropTypes.node, // 선택적
-};
