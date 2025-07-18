@@ -16,11 +16,6 @@ export default function IntroPage() {
           />
         </button>
       }
-      // rightSlot={
-      //   <button onClick={() => navigate(-1)}>
-      //     <img src={`/chevron-left.svg`} className="w-[3.6rem] aspect-square" />
-      //   </button>
-      // }
       primaryBtn={
         <div className="w-full h-min bg-grey-20 rounded-[1rem] text-[1rem] lg:text-[1.4rem] leading-[200%] tracking-[-2.3%] p-[0.8rem] lg:p-[1rem] mb-[0.6rem]">
           <p>💡 16문항 / 약 5분 소요</p>

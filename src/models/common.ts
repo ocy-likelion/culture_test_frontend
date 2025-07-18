@@ -25,7 +25,7 @@ export interface ChartProps {
   label: string;
   left: ChartSide;
   right: ChartSide;
-  color: string;
+  color?: string;
 }
 
 export interface ChartCanvasProps {
@@ -35,8 +35,8 @@ export interface ChartCanvasProps {
 export interface ChartData {
   resultType: string;
   result: ChartProps[];
-  history: string;
-  className: string;
+  history?: boolean;
+  className?: string;
 }
 
 type Choices = {
@@ -56,4 +56,9 @@ export interface ResultData {
   type: string;
   date: string;
   image: string;
+}
+
+export interface SurveyPaper {
+  content: QuestionProps[];
+  totalPages: number;
 }

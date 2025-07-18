@@ -1,4 +1,3 @@
-import ChartCanvas from "@components/ChartCanvas";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import ResultDetail from "@components/ResultDetail";
 import { useNavigate } from "react-router-dom";
