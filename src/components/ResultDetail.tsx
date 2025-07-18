@@ -1,4 +1,5 @@
 import { ChartData } from "@/models/common";
+import useUserStore from "@/zustand/useUserStore";
 import ChartCanvas from "@components/ChartCanvas";
 
 export default function ResultDetail({
@@ -7,13 +8,15 @@ export default function ResultDetail({
   className,
   history,
 }: ChartData) {
+  const { user } = useUserStore();
+
   return (
     <>
       <div
         className={`flex items-center bg-white rounded-[0.6rem] px-[1.4rem] ${className}`}
       >
         <div className="text-center font-medium text-[1.7rem] lg:text-[2.4rem] leading-[135%]">
-          <p>홍길동 담당자님은</p>
+          <p>{user?.nickname} 담당자님은</p>
           <p>
             <span className="text-primary-30">{resultType}</span>
             {history ? "형을 선호하셨군요!" : "형을 선호하시는군요!"}

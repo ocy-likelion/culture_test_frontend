@@ -1,3 +1,4 @@
+import useUserStore from "@/zustand/useUserStore";
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import Modal from "@components/Modal";
@@ -9,6 +10,7 @@ export default function MyPage() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [logout, setLogout] = useState(false);
+  const { user } = useUserStore();
 
   const testResults = [
     {
@@ -69,17 +71,20 @@ export default function MyPage() {
       }
     >
       <div className="bg-white flex gap-7 items-center p-[2rem]">
-        <div>
-          <img src="/profile.svg" className="w-[6rem] lg:w-[8rem]" />
+        <div className="relative aspect-square w-[6rem] lg:w-[8rem]">
+          <img
+            src={user?.profileImageUrl ? user?.profileImageUrl : "/profile.svg"}
+            className="absolute top-0 left-0 w-full h-full rounded-full"
+          />
         </div>
 
         <div className="w-full flex justify-between items-center">
           <div className="flex flex-col gap-2 lg:gap-4">
             <span className="font-medium text-[1.6rem] lg:text-[2rem]">
-              홍길동
+              {user?.nickname}
             </span>
             <span className="text-grey-70  text-[1.4rem] lg:text-[1.6rem]">
-              kakao 로그인
+              {user?.ssoProvider === "KAKAO" ? "kakao" : "google"} 로그인
             </span>
           </div>
 

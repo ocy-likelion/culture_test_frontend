@@ -4,6 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
+  const REDIRECT_URI = `${import.meta.env.VITE_API_FRONT_URL}/intro`;
+
+  const handleKakaoLogin = () => {
+    // 카카오 로그인 페이지로 보내주는 주체는 "백엔드" => 8090
+    window.location.href = `${
+      import.meta.env.VITE_API_BASE_URL
+    }/oauth2/authorization/kakao?state=${REDIRECT_URI}`;
+  };
+
   return (
     <>
       <SurveyLayout
@@ -11,7 +20,7 @@ export default function Login() {
           <Button
             kakao
             rounded
-            onClick={() => navigate("/intro")}
+            onClick={handleKakaoLogin}
             className="text-[1.4rem] lg:text-[1.6rem]"
           >
             <img src="/kakao.svg" className="w-[2rem] aspect-square mr-2" />
@@ -22,7 +31,7 @@ export default function Login() {
           <Button
             google
             rounded
-            onClick={() => console.log("GOOGLE!")}
+            onClick={() => navigate("/intro")}
             className="text-[1.4rem] lg:text-[1.6rem] "
           >
             <img src="/google.svg" className="w-[1.8rem] aspect-square mr-2" />

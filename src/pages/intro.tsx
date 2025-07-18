@@ -1,17 +1,33 @@
+import useAxiosInstance from "@/hooks/useAxiosInstance";
+import useUserStore from "@/zustand/useUserStore";
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
 export default function IntroPage() {
   const navigate = useNavigate();
+  const axios = useAxiosInstance();
+  const { setUser } = useUserStore();
+
+  const { data: user } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const res = await axios.get("/api/v1/auth/me");
+      console.log(res.data);
+      setUser(res.data);
+      return res.data;
+    },
+    staleTime: 1000 * 60 * 5, // 5분 동안 캐시 유지 (선택)
+  });
 
   return (
     <SurveyLayout
       leftSlot={
-        <button>
+        <button className="relative aspect-square w-[3.4rem] lg:w-[3.6rem]">
           <img
-            src={`/profile.svg`}
-            className="w-[3.4rem] lg:w-[3.6rem] aspect-square"
+            src={user?.profileImageUrl ? user?.profileImageUrl : "/profile.svg"}
+            className="absolute top-0 left-0 w-full h-full rounded-full"
             onClick={() => navigate("/mypage")}
           />
         </button>
