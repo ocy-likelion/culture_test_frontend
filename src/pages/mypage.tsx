@@ -1,16 +1,51 @@
+import useAxiosInstance from "@/hooks/useAxiosInstance";
 import useUserStore from "@/zustand/useUserStore";
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import Modal from "@components/Modal";
 import ResultEntry from "@components/ResultEntry";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 export default function MyPage() {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [withdraw, setWithdraw] = useState(false);
   const [logout, setLogout] = useState(false);
-  const { user } = useUserStore();
+  const { user, resetUser } = useUserStore();
+  const axios = useAxiosInstance();
+
+  const withdrawMutation = useMutation({
+    mutationFn: async () => {
+      const res = await axios.delete("/api/v1/auth/withdraw");
+      console.log("회원탈퇴요청: ", res.data);
+      return res.data;
+    },
+    onSuccess: (data) => {
+      setWithdraw(false); // 모달 창 닫기 (UI)
+      resetUser(); // 전역상태 초기화
+      toast.success(data.msg);
+      navigate("/"); // 홈(로그인 페이지)으로 이동
+    },
+    onError: (err) => {
+      console.error("회원탈퇴 실패", err);
+      toast.error("회원탈퇴 실패했습니다.", {
+        icon: "⚠️",
+        style: {
+          background: "#fee2e2",
+          color: "#b91c1c",
+          fontWeight: "500",
+          fontSize: "1.6rem",
+          border: "2px solid #fca5a5",
+        },
+      });
+    },
+  });
+
+  const handleWithdraw = async () => {
+    withdrawMutation.mutate();
+  };
 
   const testResults = [
     {
@@ -64,7 +99,7 @@ export default function MyPage() {
       primaryBtn={
         <button
           className={`underline text-[1rem] lg:text-[1.2rem] text-grey-60`}
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => setWithdraw(true)}
         >
           회원탈퇴
         </button>
@@ -132,7 +167,7 @@ export default function MyPage() {
         )}
       </div>
 
-      {isModalOpen && (
+      {withdraw && (
         <Modal>
           <div className="flex flex-col gap-3 items-center">
             <p className="text-grey-90 font-medium text-[1.6rem] lg:text-[1.8rem]">
@@ -148,7 +183,7 @@ export default function MyPage() {
           <div className="flex gap-3">
             <Button
               rounded
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => setWithdraw(false)}
               className="bg-grey-30 text-grey-70 h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
             >
               머무르기
@@ -157,6 +192,7 @@ export default function MyPage() {
               primary
               rounded
               className="h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
+              onClick={handleWithdraw}
             >
               떠나기
             </Button>

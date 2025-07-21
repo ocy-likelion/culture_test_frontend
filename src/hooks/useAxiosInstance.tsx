@@ -8,7 +8,7 @@ export default function useAxiosInstance(): AxiosInstance {
       "Content-Type": "application/json",
       accept: "application/json",
     },
-    withCredentials: true, // 브라우저가 해당 baseURL(도메인)의 쿠키를 요청에 자동으로 포함하도록 설정
+    withCredentials: true, // 브라우저가 해당 baseURL(도메인)의 쿠키를 요청에 자동으로 포함하도록 설정 (브라우저가 쿠키를 포함해 요청을 보낼 수 있게 해주는 설정) => POST 요청 시엔 쿠키를 받기 위해, GET 요청 시엔 쿠키를 받기 위해 필요
   });
   // axios에서 CORS 환경에서 브라우저가 쿠키를 포함해 요청하도록 허용하는 설정입니다.
   // baseURL이 https://api.example.com이면, 내 브라우저가 "그 도메인에 대해 가지고 있는 쿠키"를 ✨자동으로✨ "요청 시 헤더에 포함"시킵니다.

@@ -10,7 +10,7 @@ export default function Login() {
     // 카카오 로그인 페이지로 보내주는 주체는 "백엔드" => 8090
     window.location.href = `${
       import.meta.env.VITE_API_BASE_URL
-    }/oauth2/authorization/kakao?state=${REDIRECT_URI}`;
+    }/oauth2/authorization/kakao?state=${REDIRECT_URI}`; // redirect_uri 파라미터 이름은 "state"
   };
 
   return (
@@ -31,7 +31,7 @@ export default function Login() {
           <Button
             google
             rounded
-            onClick={() => navigate("/intro")}
+            // onClick={}
             className="text-[1.4rem] lg:text-[1.6rem] "
           >
             <img src="/google.svg" className="w-[1.8rem] aspect-square mr-2" />

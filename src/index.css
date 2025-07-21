@@ -27,6 +27,11 @@ img {
   all: unset;
 }
 
+.checkboxCustom {
+  position: absolute;
+  pointer-events: none;
+}
+
 .choice {
   display: flex;
   flex-direction: column;
@@ -79,4 +84,27 @@ img {
 .animate-spinner-rotate {
   animation: spinner-rotate 1s linear infinite;
   /* 정의한 keyframe(애니메이션 동작)을 1초동안 실행되도록, 속도는 일정하게 (처음도 느리지 않게) */
+}
+
+/* ✅ 커스텀 유틸리티 */
+@layer utilities {
+  /* 전체 스크롤바 (트랙 + thumb 포함 영역) */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+
+  /* 실제로 마우스로 드래그하는 막대 부분 */
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: theme("colors.grey.60"); /* Tailwind 색상 사용 */
+    border-radius: 10px;
+  }
+
+  /* thumb가 움직이는 배경 트랙 영역 */
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+.custom-scrollbar {
+  scrollbar-gutter: stable; /* ✅ 스크롤 공간을 레이아웃에 포함 */
 }

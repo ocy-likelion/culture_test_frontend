@@ -13,6 +13,9 @@ export interface User {
   nickname: string;
   profileImageUrl?: string;
   ssoProvider: "KAKAO" | "GOOGLE";
+  hasAgreedTerms: boolean;
+  role: string;
+  id: number;
 }
 
 export interface UserStore {

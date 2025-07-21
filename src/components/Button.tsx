@@ -3,6 +3,7 @@ import { GoSync } from "react-icons/go";
 import { ButtonProps } from "@/models/common";
 
 function Button({
+  // type = "button",
   children,
   primary,
   secondary,

@@ -23,3 +23,9 @@ export interface FooterProps {
   secondaryBtn?: ReactNode;
   footerCN?: string;
 }
+
+export type FormData = {
+  "terms-required": boolean;
+  "personal-required": boolean;
+  "survey-used": boolean;
+};
