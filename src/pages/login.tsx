@@ -3,14 +3,16 @@ import SurveyLayout from "@components/layouts/SurveyLayout";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const navigate = useNavigate();
-  const REDIRECT_URI = `${import.meta.env.VITE_API_FRONT_URL}/intro`;
+  const REDIRECT_URI: string = `${import.meta.env.VITE_API_FRONT_URL}/intro`;
 
-  const handleKakaoLogin = () => {
-    // 카카오 로그인 페이지로 보내주는 주체는 "백엔드" => 8090
-    window.location.href = `${
+  const handleKakaoLogin = (): void => {
+    const kakaoUrl = `${
       import.meta.env.VITE_API_BASE_URL
-    }/oauth2/authorization/kakao?state=${REDIRECT_URI}`; // redirect_uri 파라미터 이름은 "state"
+    }/oauth2/authorization/kakao?state=${REDIRECT_URI}`;
+    // 카카오 로그인 페이지로 보내주는 주체는 "백엔드" => 8090
+
+    // ✅ 현재 페이지를 히스토리에 남기지 않고 리다이렉트
+    window.location.replace(kakaoUrl); // 💥redirect_uri 파라미터 이름은 "state"
   };
 
   return (

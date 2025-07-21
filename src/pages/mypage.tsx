@@ -16,6 +16,33 @@ export default function MyPage() {
   const { user, resetUser } = useUserStore();
   const axios = useAxiosInstance();
 
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      const res = await axios.post("/api/v1/auth/logout");
+      console.log("로그아웃 요청: ", res.data);
+      return res.data;
+    },
+    onSuccess: () => {
+      setLogout(false); // 모달 창 닫기 (UI)
+      resetUser(); // 전역상태 초기화
+      toast.success("성공적으로 로그아웃 되었습니다.");
+      navigate("/"); // 홈(로그인 페이지)으로 이동
+    },
+    onError: (err) => {
+      console.error("로그아웃 실패", err);
+      toast.error("로그아웃에 실패했습니다.", {
+        icon: "⚠️",
+        style: {
+          background: "#fee2e2",
+          color: "#b91c1c",
+          fontWeight: "500",
+          fontSize: "1.6rem",
+          border: "2px solid #fca5a5",
+        },
+      });
+    },
+  });
+
   const withdrawMutation = useMutation({
     mutationFn: async () => {
       const res = await axios.delete("/api/v1/auth/withdraw");
@@ -42,10 +69,6 @@ export default function MyPage() {
       });
     },
   });
-
-  const handleWithdraw = async () => {
-    withdrawMutation.mutate();
-  };
 
   const testResults = [
     {
@@ -192,7 +215,7 @@ export default function MyPage() {
               primary
               rounded
               className="h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
-              onClick={handleWithdraw}
+              onClick={() => withdrawMutation.mutate()}
             >
               떠나기
             </Button>
@@ -223,6 +246,7 @@ export default function MyPage() {
               primary
               rounded
               className="h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
+              onClick={() => logoutMutation.mutate()}
             >
               로그아웃
             </Button>
