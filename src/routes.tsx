@@ -5,12 +5,14 @@ import IntroPage from "@/pages/intro";
 import SurveyPage from "@/pages/survey";
 import { createBrowserRouter } from "react-router-dom";
 import HistoryPage from "@pages/history";
+import NotFoundPage from "@/pages/NotFound";
 
 const router = createBrowserRouter(
   [
     {
       path: "/",
       element: <Login />,
+      errorElement: <NotFoundPage />,
     },
     {
       path: "/intro",
