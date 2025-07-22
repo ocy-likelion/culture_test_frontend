@@ -12,7 +12,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   // danger?: boolean;
   // outline?: boolean;
   rounded?: boolean;
-  loading?: boolean;
+  blocked?: boolean;
 }
 
 // Chart.js

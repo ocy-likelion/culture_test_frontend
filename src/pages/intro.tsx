@@ -27,6 +27,8 @@ export default function IntroPage() {
 
   const allChecked = Object.values(watchAll).every(Boolean); // watch 객체의 value값들이 모두 true값을 갖고 있다면 true 반환..
 
+  const isOkayToNext = watchAll["personal-required"] && watchAll["survey-used"];
+
   const agreeTermsMutation = useMutation({
     mutationFn: async () => {
       const res = await axios.patch("/api/v1/auth/agree-terms");
@@ -209,7 +211,8 @@ export default function IntroPage() {
 
             <div className="mt-[2.4rem]">
               <Button
-                primary
+                primary={isOkayToNext}
+                blocked={!isOkayToNext}
                 rounded
                 className="h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
               >

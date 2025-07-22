@@ -70,6 +70,12 @@ export default function SurveyPage() {
     return true;
   };
 
+  const isOkayToMove =
+    questions &&
+    questions.content.every((q) =>
+      answers.some((a) => a.questionId === q.questionId)
+    );
+
   const handleNext = () => {
     if (!checkUnanswered()) return;
 
@@ -175,7 +181,8 @@ export default function SurveyPage() {
       primaryBtn={
         currentPage + 1 === questions?.totalPages ? (
           <Button
-            primary
+            primary={isOkayToMove}
+            blocked={!isOkayToMove}
             rounded
             onClick={() => {
               if (!checkUnanswered()) return;
@@ -186,7 +193,12 @@ export default function SurveyPage() {
             결과 제출
           </Button>
         ) : (
-          <Button primary rounded onClick={handleNext}>
+          <Button
+            primary={isOkayToMove}
+            blocked={!isOkayToMove}
+            rounded
+            onClick={handleNext}
+          >
             다음으로
           </Button>
         )
