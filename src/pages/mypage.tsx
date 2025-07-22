@@ -4,7 +4,7 @@ import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import Modal from "@components/Modal";
 import ResultEntry from "@components/ResultEntry";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";

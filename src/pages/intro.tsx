@@ -4,7 +4,7 @@ import useUserStore from "@/zustand/useUserStore";
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FormData } from "@/models/survey";
@@ -12,20 +12,9 @@ import { FormData } from "@/models/survey";
 export default function IntroPage() {
   const navigate = useNavigate();
   const axios = useAxiosInstance();
-  const { user, setUser } = useUserStore();
+  const { user } = useUserStore();
   const [agreed, setAgreed] = useState(false);
   const queryClient = useQueryClient();
-
-  const { data: loginUser } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => {
-      const res = await axios.get("/api/v1/auth/me");
-      console.log(res.data);
-      setUser(res.data);
-      return res.data;
-    },
-    staleTime: 1000 * 60 * 5, // 5분 동안 캐시 유지 (선택)
-  });
 
   const { register, handleSubmit, setValue, watch } = useForm<FormData>({
     defaultValues: {
@@ -73,11 +62,7 @@ export default function IntroPage() {
       leftSlot={
         <button className="relative aspect-square w-[3.4rem] lg:w-[3.6rem]">
           <img
-            src={
-              loginUser?.profileImageUrl
-                ? loginUser?.profileImageUrl
-                : "/profile.svg"
-            }
+            src={user?.profileImageUrl ? user?.profileImageUrl : "/profile.svg"}
             className="absolute top-0 left-0 w-full h-full rounded-full"
             onClick={() => navigate("/mypage")}
           />
