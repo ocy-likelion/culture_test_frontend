@@ -127,26 +127,24 @@ export default function IntroPage() {
           </div>
 
           <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col gap-4 font-light">
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="terms-1"
-                    className="peer inputUnset checkboxCustom"
-                    onChange={handleCheckAll}
-                    checked={allChecked}
-                  />
-                  <label
-                    className="flex gap-2 items-center cursor-pointer before:w-[3rem] before:h-[3rem] before:inline-block before:content-[''] before:bg-[url('/check-circle.svg')] peer-checked:before:bg-[url('/checked-circle.svg')] font-gowunBold text-[1.6rem]"
-                    htmlFor="terms-1"
-                  >
-                    전체 동의합니다.
-                  </label>
-                </div>
+            <div className="flex flex-col font-light">
+              <div className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  id="terms-1"
+                  className="peer inputUnset checkboxCustom"
+                  onChange={handleCheckAll}
+                  checked={allChecked}
+                />
+                <label
+                  className="flex gap-2 items-center cursor-pointer before:w-[3rem] before:h-[3rem] before:inline-block before:content-[''] before:bg-[url('/check-circle.svg')] peer-checked:before:bg-[url('/checked-circle.svg')] font-gowunBold text-[1.6rem]"
+                  htmlFor="terms-1"
+                >
+                  전체 동의합니다.
+                </label>
               </div>
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 before:content-[''] before:w-full before:h-[0.1rem] before:bg-grey-40 before:mb-2 mb-6">
                 <div className="flex items-center">
                   <input
                     type="checkbox"
@@ -167,7 +165,7 @@ export default function IntroPage() {
                   </label>
                 </div>
 
-                <div className="bg-grey-30 border border-[#ddd] rounded-xl max-h-[100px] overflow-auto box-border text-[1.4rem] text-grey-70 font-light flex flex-col gap-3 py-[1.2rem] px-[1.4rem] leading-[135%] custom-scrollbar">
+                <div className="bg-grey-20 border border-grey-40 rounded-xl max-h-[100px] overflow-auto box-border text-[1.4rem] text-grey-70 font-light flex flex-col gap-3 py-[1.6rem] px-[1.8rem] leading-[135%] custom-scrollbar">
                   <p>
                     서비스 이용을 위해 아래와 같이 개인정보를 수집 및
                     이용합니다.
@@ -212,7 +210,7 @@ export default function IntroPage() {
                   </label>
                 </div>
 
-                <div className="bg-grey-30 border border-[#ddd] rounded-xl max-h-[100px] overflow-auto box-border text-[1.4rem] text-grey-70 font-light flex flex-col gap-3 py-[1.2rem] px-[1.4rem] custom-scrollbar">
+                <div className="bg-grey-20 border border-grey-40 rounded-xl max-h-[100px] overflow-auto box-border text-[1.4rem] text-grey-70 font-light flex flex-col gap-3 py-[1.6rem] px-[1.8rem] custom-scrollbar">
                   <p> [설문 데이터 활용 동의 안내]</p>
                   <p className="leading-[135%]">
                     본 설문 결과는 기업의 채용 및 인재 매칭 목적에 활용되며,
