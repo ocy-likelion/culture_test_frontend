@@ -1,6 +1,5 @@
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const REDIRECT_URI: string = `${import.meta.env.VITE_API_FRONT_URL}/intro`;
@@ -13,6 +12,14 @@ export default function Login() {
 
     // ✅ 현재 페이지를 히스토리에 남기지 않고 리다이렉트
     window.location.replace(kakaoUrl); // 💥redirect_uri 파라미터 이름은 "state"
+  };
+
+  const handleGoogleLogin = (): void => {
+    const googleUrl = `${
+      import.meta.env.VITE_API_BASE_URL
+    }/oauth2/authorization/google?state=${REDIRECT_URI}`;
+
+    window.location.replace(googleUrl); // 💥redirect_uri 파라미터 이름은 "state"
   };
 
   return (
@@ -35,6 +42,7 @@ export default function Login() {
             rounded
             // onClick={}
             className="text-[1.4rem] lg:text-[1.6rem] "
+            onClick={handleGoogleLogin}
           >
             <img src="/google.svg" className="w-[1.8rem] aspect-square mr-2" />
             구글로 시작하기

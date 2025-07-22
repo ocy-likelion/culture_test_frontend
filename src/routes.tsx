@@ -6,6 +6,7 @@ import SurveyPage from "@/pages/survey";
 import { createBrowserRouter } from "react-router-dom";
 import HistoryPage from "@pages/history";
 import NotFoundPage from "@/pages/NotFound";
+import ProtectedRoute from "@/components/layouts/ProtectedRoutes";
 
 const router = createBrowserRouter(
   [
@@ -14,25 +15,32 @@ const router = createBrowserRouter(
       element: <Login />,
       errorElement: <NotFoundPage />,
     },
+
+    // ✅ 로그인해야 접근 가능한 페이지만 ProtectedRoute 적용
     {
-      path: "/intro",
-      element: <IntroPage />,
-    },
-    {
-      path: "/survey",
-      element: <SurveyPage />,
-    },
-    {
-      path: "/results",
-      element: <ResultsPage />,
-    },
-    {
-      path: "/mypage",
-      element: <MyPage />,
-    },
-    {
-      path: "/mypage/history",
-      element: <HistoryPage />,
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: "/intro",
+          element: <IntroPage />,
+        },
+        {
+          path: "/survey",
+          element: <SurveyPage />,
+        },
+        {
+          path: "/results",
+          element: <ResultsPage />,
+        },
+        {
+          path: "/mypage",
+          element: <MyPage />,
+        },
+        {
+          path: "/mypage/history",
+          element: <HistoryPage />,
+        },
+      ],
     },
   ]
   // {
