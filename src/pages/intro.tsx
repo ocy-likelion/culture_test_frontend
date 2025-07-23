@@ -8,11 +8,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FormData } from "@/models/survey";
+import toast from "react-hot-toast";
 
 export default function IntroPage() {
   const navigate = useNavigate();
   const axios = useAxiosInstance();
-  const { user } = useUserStore();
+  const { user, setUser } = useUserStore();
   const [agreed, setAgreed] = useState(false);
   const queryClient = useQueryClient();
 
@@ -32,15 +33,14 @@ export default function IntroPage() {
   const agreeTermsMutation = useMutation({
     mutationFn: async () => {
       const res = await axios.patch("/api/v1/auth/agree-terms");
-      console.log("res: ", res);
-      console.log("res.data: ", res.data);
-
+      setUser(res.data); // ✅ 프론트 상태 반영
       return res.data;
     },
     onSuccess: () => {
       setAgreed(true); // ✅ UI 즉시 반영
       // 단순 ['user']가 아닌, TS에선 { queryKey: [...] } 객체 형태로 넘겨야, InvalidateQueryFilters 타입과 정확히 일치.
-      queryClient.invalidateQueries({ queryKey: ["user"] }); // 서버 데이터 반영
+      queryClient.invalidateQueries({ queryKey: ["user"] }); // ✅ 서버 데이터 반영
+      toast.success("약관 동의가 완료되었습니다.");
     },
     onError: (err) => {
       console.error("약관 동의 업데이트 실패", err);
