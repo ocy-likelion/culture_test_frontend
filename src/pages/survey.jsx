@@ -6,7 +6,7 @@ import Spinner from "@/components/Spinner";
 import useAxiosInstance from "@hooks/useAxiosInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAnswersStore from "@zustand/useAnswersStore";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +15,7 @@ const PAGE_SIZE = 2;
 export default function SurveyPage() {
   const [currentPage, setCurrentPage] = useState(0);
   const { answers, setAnswer, resetAnswer } = useAnswersStore();
+  const [timeoutError, setTimeoutError] = useState(false);
 
   const axios = useAxiosInstance();
   const navigate = useNavigate();
@@ -23,6 +24,23 @@ export default function SurveyPage() {
   const intervalRef = useRef(null); // 🔁 polling을 위한 ref
   const userId = 10;
   const surveyId = 1;
+
+  useEffect(() => {
+    let timeoutId;
+
+    if (isAnalyzing) {
+      // 30초 타임아웃 설정
+      timeoutId = setTimeout(() => {
+        clearInterval(intervalRef.current); // polling 중단
+        setIsAnalyzing(false);
+        setTimeoutError(true); // 🔥 오류 상태로 전환
+      }, 30000); // 30초
+    }
+
+    return () => {
+      clearTimeout(timeoutId); // 언마운트 시 타이머 제거
+    };
+  }, [isAnalyzing]);
 
   // React Query(useQuery)를 이용한 GET 요청 코드
   const {
@@ -250,6 +268,53 @@ export default function SurveyPage() {
               <p className="font-light text-grey-80 text-[1rem] lg:text-[1.2rem]">
                 잠시만 기다려주세요.
               </p>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {timeoutError && (
+        <Modal>
+          <div className="flex flex-col items-center gap-4">
+            <div className="relative aspect-square w-[12rem] lg:w-[20rem]">
+              <img
+                src="/error-g.svg"
+                className="absolute top-0 left-0 w-full h-full object-contain"
+                alt="에러 이미지"
+              />
+            </div>
+            <p className="font-bold text-[1.6rem] text-red-500">
+              분석이 지연되고 있어요
+            </p>
+            <div className="text-[1.2rem] text-grey-70 text-center">
+              <p>
+                네트워크 문제 또는 서버 처리 지연으로 인해 결과 분석이
+                실패했어요.
+              </p>
+              <p>다시 시도하시겠어요?</p>
+            </div>
+
+            <div className="flex gap-4 mt-4">
+              <Button
+                primary
+                rounded
+                onClick={() => {
+                  setTimeoutError(false);
+                  setIsAnalyzing(true);
+                  submitMutation.mutate(answers); // 다시 요청
+                }}
+                className="min-w-fit px-10"
+              >
+                다시 시도하기
+              </Button>
+              <Button
+                secondary
+                rounded
+                onClick={() => navigate("/intro")}
+                className="min-w-fit px-10"
+              >
+                시작 화면으로
+              </Button>
             </div>
           </div>
         </Modal>

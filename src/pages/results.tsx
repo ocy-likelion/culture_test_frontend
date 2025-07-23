@@ -1,3 +1,4 @@
+import useUserStore from "@/zustand/useUserStore";
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import ResultDetail from "@components/ResultDetail";
@@ -9,6 +10,7 @@ export default function ResultsPage() {
   const location = useLocation();
   const { resultType, result } = location.state;
   const { resetAnswer } = useAnswersStore();
+  const { user } = useUserStore();
 
   return (
     <SurveyLayout
@@ -16,24 +18,24 @@ export default function ResultsPage() {
       mainCN="px-[2rem] pt-[8rem] gap-[1.6rem] xl:gap-[2rem] pb-[1rem]"
       footerCN="bg-grey-20 static"
       leftSlot={
-        <button>
+        <button className="relative aspect-square w-[3.4rem] lg:w-[3.8rem]">
           <img
-            src={`/profile.svg`}
-            className="w-[2.8rem] lg:w-[3.6rem] aspect-square"
+            src={user?.profileImageUrl}
+            className="absolute top-0 left-0 w-full h-full rounded-full"
             onClick={() => navigate("/mypage")}
           />
         </button>
       }
       middleSlot={
         <button onClick={() => navigate("/")}>
-          <img src={`/logo.svg`} />
+          <img src={`/logo.svg`} className="w-[16rem] lg:w-[18rem]" />
         </button>
       }
       rightSlot={
         <button onClick={() => navigate(-1)}>
           <img
             src={`/share.svg`}
-            className="w-[2.8rem] lg:w-[3.2rem] aspect-square"
+            className="w-[3rem] lg:w-[3.2rem] aspect-square"
           />
         </button>
       }

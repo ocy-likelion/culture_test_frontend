@@ -19,7 +19,7 @@ export default function ResultDetail({
           <p>{user?.nickname} 담당자님은</p>
           <p>
             <span className="text-primary-30">{resultType}</span>
-            {history ? "형을 선호하셨군요!" : "형을 선호하시는군요!"}
+            {history ? "을 선호하셨군요!" : "을 선호하시는군요!"}
           </p>
         </div>
 
