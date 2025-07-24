@@ -1,13 +1,14 @@
 import useAxiosInstance from "@/hooks/useAxiosInstance";
+import { ResultData } from "@/models/common";
 import useUserStore from "@/zustand/useUserStore";
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import Modal from "@components/Modal";
 import ResultEntry from "@components/ResultEntry";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function MyPage() {
   const navigate = useNavigate();
@@ -15,6 +16,15 @@ export default function MyPage() {
   const [logout, setLogout] = useState(false);
   const { user, resetUser } = useUserStore();
   const axios = useAxiosInstance();
+
+  const { data: results } = useQuery({
+    queryKey: ["results", "history"],
+    queryFn: async () => {
+      const res = await axios.get(`/api/v1/result/history/${user?.id}`);
+      console.log("내 결과 내역: ", res.data);
+      return res.data;
+    },
+  });
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
@@ -70,38 +80,20 @@ export default function MyPage() {
     },
   });
 
-  const testResults = [
-    {
-      id: 1,
-      type: "관계 조율자형",
-      date: "2025.07.03",
-      image: "/result-exam.svg",
-    },
-    {
-      id: 2,
-      type: "창의적 혁신가형",
-      date: "2025.06.29",
-      image: "/result-exam.svg",
-    },
-    {
-      id: 3,
-      type: "논리적 분석가형",
-      date: "2025.06.20",
-      image: "/result-exam.svg",
-    },
-    {
-      id: 4,
-      type: "조직 관리자형",
-      date: "2025.06.11",
-      image: "/result-exam.svg",
-    },
-    {
-      id: 5,
-      type: "직관적 실행가형",
-      date: "2025.05.30",
-      image: "/result-exam.svg",
-    },
-  ];
+  // const testResults = [
+  //   {
+  //     id: 1,
+  //     type: "관계 조율자형",
+  //     date: "2025.07.03",
+  //     image: "/result-exam.svg",
+  //   },
+  //   {
+  //     id: 2,
+  //     type: "창의적 혁신가형",
+  //     date: "2025.06.29",
+  //     image: "/result-exam.svg",
+  //   },
+  // ];
 
   return (
     <SurveyLayout
@@ -161,12 +153,13 @@ export default function MyPage() {
         </h2>
 
         {/* 공통 컴포넌트화 */}
-        {testResults.length > 0 ? (
-          testResults.map((result) => (
+        {results?.length > 0 ? (
+          results?.map((result: ResultData) => (
             <ResultEntry
               key={result.id}
-              type={result.type}
-              date={result.date}
+              resultId={result.id}
+              type={result.resultType}
+              date={result.localDate}
               image={result.image}
             />
           ))

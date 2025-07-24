@@ -34,7 +34,7 @@ export interface ChartCanvasProps {
 
 export interface ChartData {
   resultType: string;
-  result: ChartProps[];
+  chartResult: ChartProps[];
   history?: boolean;
   className?: string;
 }
@@ -53,6 +53,14 @@ export interface QuestionProps {
 }
 
 export interface ResultData {
+  id: number;
+  resultType: string;
+  localDate: string;
+  image: string;
+}
+
+export interface ResultEntryProps {
+  resultId: number;
   type: string;
   date: string;
   image: string;

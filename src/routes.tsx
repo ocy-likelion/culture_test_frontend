@@ -42,7 +42,7 @@ const router = createBrowserRouter(
           element: <MyPage />,
         },
         {
-          path: "/mypage/history",
+          path: "/mypage/history/:resultId",
           element: <HistoryPage />,
         },
       ],

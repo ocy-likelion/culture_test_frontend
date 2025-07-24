@@ -1,7 +1,12 @@
-import { ResultData } from "@/models/common";
+import { ResultEntryProps } from "@/models/common";
 import { useNavigate } from "react-router-dom";
 
-export default function ResultEntry({ type, date, image }: ResultData) {
+export default function ResultEntry({
+  resultId,
+  type,
+  date,
+  image,
+}: ResultEntryProps) {
   const navigate = useNavigate();
 
   return (
@@ -26,7 +31,7 @@ export default function ResultEntry({ type, date, image }: ResultData) {
 
         <button
           className="bg-primary-30 px-[1rem] lg:px-[1.2rem] py-[0.6rem] lg:py-[0.8rem] text-white border text-[1.2rem] lg:text-[1.4rem] font-medium rounded-lg border-grey-30"
-          onClick={() => navigate(`/mypage/history`)}
+          onClick={() => navigate(`/mypage/history/${resultId}`)}
         >
           결과 보기
         </button>

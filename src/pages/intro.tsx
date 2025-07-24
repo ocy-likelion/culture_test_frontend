@@ -66,7 +66,7 @@ export default function IntroPage() {
           <img
             src={user?.profileImageUrl ? user?.profileImageUrl : "/profile.svg"}
             className="absolute top-0 left-0 w-full h-full rounded-full"
-            onClick={() => navigate("/mypage")}
+            onClick={() => navigate(`/mypage/${user?.id}`)}
           />
         </button>
       }

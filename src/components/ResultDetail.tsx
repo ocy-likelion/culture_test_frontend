@@ -3,7 +3,7 @@ import useUserStore from "@/zustand/useUserStore";
 import ChartCanvas from "@components/ChartCanvas";
 
 export default function ResultDetail({
-  result,
+  chartResult,
   resultType,
   className,
   history,
@@ -13,7 +13,7 @@ export default function ResultDetail({
   return (
     <>
       <div
-        className={`flex items-center bg-white rounded-[0.6rem] px-[1.4rem] ${className}`}
+        className={`flex items-center justify-around bg-white rounded-[0.6rem] px-[1.4rem] ${className}`}
       >
         <div className="text-center font-medium text-[1.7rem] lg:text-[2.4rem] leading-[135%]">
           <p>{user?.nickname} 담당자님은</p>
@@ -32,7 +32,7 @@ export default function ResultDetail({
         </div>
       </div>
 
-      <ChartCanvas chartData={result} />
+      <ChartCanvas chartData={chartResult} />
 
       <div className=" bg-white rounded-[0.6rem] leading-[200%] tracking-[-2.3%] py-[2rem] px-[1.6rem]">
         <ul className="list-disc pl-[2rem] space-y-[0.6rem] text-grey-90 text-[1.2rem] lg:text-[1.4rem] leading-[160%]">
