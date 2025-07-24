@@ -14,7 +14,7 @@ export default function IntroPage() {
   const navigate = useNavigate();
   const axios = useAxiosInstance();
   const { user, setUser } = useUserStore();
-  const [agreed, setAgreed] = useState(false);
+  const [showAgreed, setShowAgreed] = useState(false);
   const queryClient = useQueryClient();
 
   const { register, handleSubmit, setValue, watch } = useForm<FormData>({
@@ -37,7 +37,7 @@ export default function IntroPage() {
       return res.data;
     },
     onSuccess: () => {
-      setAgreed(true); // ✅ UI 즉시 반영
+      setShowAgreed(false); // ✅ UI 즉시 반영
       // 단순 ['user']가 아닌, TS에선 { queryKey: [...] } 객체 형태로 넘겨야, InvalidateQueryFilters 타입과 정확히 일치.
       queryClient.invalidateQueries({ queryKey: ["user"] }); // ✅ 서버 데이터 반영
       toast.success("약관 동의가 완료되었습니다.");
@@ -59,6 +59,14 @@ export default function IntroPage() {
     });
   };
 
+  const handleShowAgree = () => {
+    if (!user?.hasAgreedTerms) {
+      setShowAgreed(true);
+    } else {
+      navigate("/survey");
+    }
+  };
+
   return (
     <SurveyLayout
       leftSlot={
@@ -66,7 +74,7 @@ export default function IntroPage() {
           <img
             src={user?.profileImageUrl ? user?.profileImageUrl : "/profile.svg"}
             className="absolute top-0 left-0 w-full h-full rounded-full"
-            onClick={() => navigate(`/mypage/${user?.id}`)}
+            onClick={() => navigate(`/mypage`)}
           />
         </button>
       }
@@ -78,7 +86,7 @@ export default function IntroPage() {
         </div>
       }
       secondaryBtn={
-        <Button primary rounded onClick={() => navigate("/survey")}>
+        <Button primary rounded onClick={() => handleShowAgree()}>
           시작하기
         </Button>
       }
@@ -104,7 +112,7 @@ export default function IntroPage() {
         <img src={`/intro-main.svg`} className="w-[24rem] lg:w-[30rem]" />
       </div>
 
-      {!user?.hasAgreedTerms && !agreed && (
+      {!user?.hasAgreedTerms && showAgreed && (
         <Modal>
           <div className="flex flex-col gap-3 items-center">
             <p className="text-grey-90 font-medium text-[1.8rem] lg:text-[1.8rem] text-center">
@@ -215,6 +223,7 @@ export default function IntroPage() {
                 blocked={!isOkayToNext}
                 rounded
                 className="h-[3.6rem] lg:h-[4rem] leading-[4rem] text-[1.4rem] lg:text-[1.6rem]"
+                onClick={() => navigate("/survey")}
               >
                 동의하고 계속하기
               </Button>
