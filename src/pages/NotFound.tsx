@@ -30,9 +30,9 @@ export default function NotFoundPage() {
           primary
           rounded
           className="max-w-fit px-[3.2rem] mt-8"
-          onClick={() => navigate("/")}
+          onClick={() => navigate(-1)}
         >
-          홈으로 돌아가기
+          이전 페이지로 돌아가기
         </Button>
       </div>
     </SurveyLayout>

@@ -5,7 +5,7 @@ export default function ResultEntry({
   resultId,
   type,
   date,
-  image,
+  image = "/temp-pic.svg",
 }: ResultEntryProps) {
   const navigate = useNavigate();
 

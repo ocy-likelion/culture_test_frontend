@@ -70,3 +70,8 @@ export interface SurveyPaper {
   content: QuestionProps[];
   totalPages: number;
 }
+
+export interface ModalProps {
+  children: ReactNode;
+  onClose?: () => void;
+}

@@ -59,7 +59,7 @@ export default function Auth() {
   // ✅ 유저 데이터가 세팅되면 intro로 이동
   useEffect(() => {
     if (loginUser) {
-      navigate("/intro");
+      navigate("/intro", { replace: true });
     }
   }, [loginUser]);
 

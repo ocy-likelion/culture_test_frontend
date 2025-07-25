@@ -1,3 +1,5 @@
+import EmptyMessage from "@/components/EmptyMessage";
+import Spinner from "@/components/Spinner";
 import useAxiosInstance from "@/hooks/useAxiosInstance";
 import { ResultData } from "@/models/common";
 import useUserStore from "@/zustand/useUserStore";
@@ -8,7 +10,7 @@ import ResultEntry from "@components/ResultEntry";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function MyPage() {
   const navigate = useNavigate();
@@ -17,7 +19,11 @@ export default function MyPage() {
   const { user, resetUser } = useUserStore();
   const axios = useAxiosInstance();
 
-  const { data: results } = useQuery({
+  const {
+    data: results,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["results", "history"],
     queryFn: async () => {
       const res = await axios.get(`/api/v1/result/history/${user?.id}`);
@@ -80,21 +86,6 @@ export default function MyPage() {
     },
   });
 
-  // const testResults = [
-  //   {
-  //     id: 1,
-  //     type: "관계 조율자형",
-  //     date: "2025.07.03",
-  //     image: "/result-exam.svg",
-  //   },
-  //   {
-  //     id: 2,
-  //     type: "창의적 혁신가형",
-  //     date: "2025.06.29",
-  //     image: "/result-exam.svg",
-  //   },
-  // ];
-
   return (
     <SurveyLayout
       leftSlot={
@@ -152,9 +143,24 @@ export default function MyPage() {
           최근 테스트 내역
         </h2>
 
-        {/* 공통 컴포넌트화 */}
-        {results?.length > 0 ? (
-          results?.map((result: ResultData) => (
+        {/* 로딩 상태 */}
+        {isLoading && <Spinner />}
+
+        {/* 에러 상태 -> 백엔드에서 받아온 에러메시지 출력하는 게 better */}
+        {isError && (
+          <div className="text-center text-red-500 text-[1.4rem]">
+            데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.
+          </div>
+        )}
+
+        {/* 로딩 끝 & 에러 X -> 결과 없음 */}
+        {!isLoading && !isError && results?.length === 0 && <EmptyMessage />}
+
+        {/* 결과 있음 */}
+        {!isLoading &&
+          !isError &&
+          results?.length > 0 &&
+          results.map((result: ResultData) => (
             <ResultEntry
               key={result.id}
               resultId={result.id}
@@ -162,25 +168,7 @@ export default function MyPage() {
               date={result.localDate}
               image={result.image}
             />
-          ))
-        ) : (
-          <div className="flex flex-col flex-1 items-center justify-center gap-[2rem] p-[2rem]">
-            <img src="/memo.svg" className="w-[6rem]" />
-            <p className="text-center text-[1.5rem] text-grey-70">
-              아직 진행한 테스트가 없어요.
-              <br />
-              지금 바로 첫 테스트를 진행해보세요.
-            </p>
-            <Button
-              primary
-              rounded
-              className="max-w-fit px-[2.4rem] text-[1.8rem]"
-              onClick={() => navigate("/intro")}
-            >
-              테스트 하러 가기
-            </Button>
-          </div>
-        )}
+          ))}
       </div>
 
       {withdraw && (

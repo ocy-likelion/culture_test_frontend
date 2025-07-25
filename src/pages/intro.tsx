@@ -113,7 +113,7 @@ export default function IntroPage() {
       </div>
 
       {!user?.hasAgreedTerms && showAgreed && (
-        <Modal>
+        <Modal onClose={() => setShowAgreed(false)}>
           <div className="flex flex-col gap-3 items-center">
             <p className="text-grey-90 font-medium text-[1.8rem] lg:text-[1.8rem] text-center">
               아래 약관에 동의하시면

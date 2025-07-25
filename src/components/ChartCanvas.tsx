@@ -11,7 +11,7 @@ export default function ChartCanvas({ chartData }: ChartCanvasProps) {
 
   return (
     <div className="w-full rounded-[0.6rem] flex flex-col justify-between items-center bg-white py-[3.6rem] px-[2rem] gap-[1.2rem]">
-      {chartData.map((item, index) => (
+      {chartData?.map((item, index) => (
         <div key={index} className="flex items-end w-full">
           {/* 왼쪽 */}
           <div

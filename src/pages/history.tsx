@@ -1,3 +1,4 @@
+import Spinner from "@/components/Spinner";
 import useAxiosInstance from "@/hooks/useAxiosInstance";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import ResultDetail from "@components/ResultDetail";
@@ -10,8 +11,13 @@ export default function HistoryPage() {
   const { resultId } = useParams(); // path parameter 추출 (경로에 포함된 값)
   // cf) useSearchParams(): 쿼리스트링 추출
 
-  const { data: detail } = useQuery({
-    queryKey: ["result", resultId],
+  const {
+    data: detail,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["result"],
     queryFn: async () => {
       const res = await axios.get(`/api/v1/result/analysis/${resultId}`);
       console.log("결과 디테일: ", res.data);
@@ -42,11 +48,21 @@ export default function HistoryPage() {
       }
       mainCN="px-[2rem] pt-[8rem] gap-[1.6rem] xl:gap-[2rem] pb-[2rem]"
     >
-      <ResultDetail
-        chartResult={detail?.result}
-        resultType={detail?.resultType}
-        history
-      />
+      {isLoading && <Spinner />}
+
+      {isError && (
+        <div className="text-center text-red-500 text-[1.4rem]">
+          데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.
+        </div>
+      )}
+
+      {!isLoading && !isError && (
+        <ResultDetail
+          chartResult={detail?.result}
+          resultType={detail?.resultType}
+          history
+        />
+      )}
     </SurveyLayout>
   );
 }

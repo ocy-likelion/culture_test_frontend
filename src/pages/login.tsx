@@ -1,12 +1,20 @@
 import useUserStore from "@/zustand/useUserStore";
 import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
   const { user } = useUserStore();
   const REDIRECT_URI: string = `${import.meta.env.VITE_API_FRONT_URL}/auth`;
+
+  // 로그인된 상태에서 로그인 페이지('/') 접근 불가
+  useEffect(() => {
+    if (user) {
+      navigate("/intro");
+    }
+  }, [user]);
 
   const handleKakaoLogin = (): void => {
     const kakaoUrl = `${
@@ -15,7 +23,7 @@ export default function Login() {
     // 카카오 로그인 페이지로 보내주는 주체는 "백엔드" => 8090
 
     // ✅ 현재 페이지를 히스토리에 남기지 않고 리다이렉트
-    window.location.replace(kakaoUrl); // 💥redirect_uri 파라미터 이름은 "state"
+    window.location.href = kakaoUrl; // 💥redirect_uri 파라미터 이름은 "state"
   };
 
   const handleGoogleLogin = (): void => {
@@ -23,7 +31,7 @@ export default function Login() {
       import.meta.env.VITE_API_BASE_URL
     }/oauth2/authorization/google?state=${REDIRECT_URI}`;
 
-    window.location.replace(googleUrl); // 💥redirect_uri 파라미터 이름은 "state"
+    window.location.href = googleUrl; // 💥redirect_uri 파라미터 이름은 "state"
   };
 
   return (

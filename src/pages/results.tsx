@@ -60,7 +60,7 @@ export default function ResultsPage() {
       }
     >
       <ResultDetail
-        result={result}
+        chartResult={result}
         resultType={resultType}
         className="flex-col pt-[3rem]"
       />
