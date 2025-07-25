@@ -70,11 +70,10 @@ export default function IntroPage() {
   return (
     <SurveyLayout
       leftSlot={
-        <button className="relative aspect-square w-[3.4rem] lg:w-[3.6rem]">
+        <button onClick={() => navigate(`/mypage`)}>
           <img
             src={user?.profileImageUrl ? user?.profileImageUrl : "/profile.svg"}
-            className="absolute top-0 left-0 w-full h-full rounded-full"
-            onClick={() => navigate(`/mypage`)}
+            className="w-[3.4rem] lg:w-[3.6rem] aspect-square rounded-full"
           />
         </button>
       }

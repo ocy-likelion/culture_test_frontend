@@ -276,13 +276,12 @@ export default function SurveyPage() {
       {timeoutError && (
         <Modal>
           <div className="flex flex-col items-center gap-4">
-            <div className="relative aspect-square w-[12rem] lg:w-[20rem]">
-              <img
-                src="/error-g.svg"
-                className="absolute top-0 left-0 w-full h-full object-contain"
-                alt="에러 이미지"
-              />
-            </div>
+            <img
+              src="/error-g.svg"
+              className="w-[12rem] lg:w-[20rem]"
+              alt="에러 이미지"
+            />
+
             <p className="font-bold text-[1.6rem] text-red-500">
               분석이 지연되고 있어요
             </p>

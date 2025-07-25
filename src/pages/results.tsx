@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function ResultsPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { resultType, result } = location.state;
+  const { resultType, result, imageUrl, resultTypeDetail } = location.state;
   const { resetAnswer } = useAnswersStore();
   const { user } = useUserStore();
 
@@ -18,10 +18,10 @@ export default function ResultsPage() {
       mainCN="px-[2rem] pt-[8rem] gap-[1.6rem] xl:gap-[2rem] pb-[1rem]"
       footerCN="bg-grey-20 static"
       leftSlot={
-        <button className="relative aspect-square w-[3.4rem] lg:w-[3.8rem]">
+        <button>
           <img
             src={user?.profileImageUrl}
-            className="absolute top-0 left-0 w-full h-full rounded-full"
+            className="w-[3.4rem] lg:w-[3.8rem] aspect-square rounded-full"
             onClick={() => navigate("/mypage")}
           />
         </button>
@@ -60,6 +60,8 @@ export default function ResultsPage() {
       }
     >
       <ResultDetail
+        description={resultTypeDetail}
+        resultImage={imageUrl}
         chartResult={result}
         resultType={resultType}
         className="flex-col pt-[3rem]"

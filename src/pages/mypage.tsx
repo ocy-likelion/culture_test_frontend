@@ -112,10 +112,10 @@ export default function MyPage() {
       }
     >
       <div className="bg-white flex gap-7 items-center p-[2rem]">
-        <div className="relative aspect-square w-[6rem] lg:w-[8rem]">
+        <div>
           <img
             src={user?.profileImageUrl ? user?.profileImageUrl : "/profile.svg"}
-            className="absolute top-0 left-0 w-full h-full rounded-full"
+            className="rounded-full aspect-square w-[6rem] lg:w-[8rem]"
           />
         </div>
 

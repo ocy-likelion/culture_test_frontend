@@ -11,13 +11,11 @@ export default function ResultEntry({
 
   return (
     <div className="flex w-full border-[0.05rem] lg:border border-grey-50 rounded-[0.8rem] pl-[1.4rem] pr-[2.8rem] py-[1rem] gap-[1rem]">
-      <div className="relative aspect-square w-[10rem] lg:w-[12rem]">
-        <img
-          src={image}
-          className="absolute top-0 left-0 w-full h-full object-contain"
-          alt="결과유형 이미지"
-        />
-      </div>
+      <img
+        src={image}
+        className="w-[10rem] lg:w-[12rem]"
+        alt="결과유형 이미지"
+      />
 
       <div className="w-full flex justify-between items-center">
         <div className="flex flex-col gap-2 lg:gap-4">

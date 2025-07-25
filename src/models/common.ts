@@ -33,6 +33,8 @@ export interface ChartCanvasProps {
 }
 
 export interface ChartData {
+  description: string;
+  resultImage: string;
   resultType: string;
   chartResult: ChartProps[];
   history?: boolean;

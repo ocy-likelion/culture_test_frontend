@@ -3,12 +3,21 @@ import useUserStore from "@/zustand/useUserStore";
 import ChartCanvas from "@components/ChartCanvas";
 
 export default function ResultDetail({
+  description,
+  resultImage,
   chartResult,
   resultType,
   className,
   history,
 }: ChartData) {
   const { user } = useUserStore();
+
+  function extractKoreanName(path: string): string {
+    // 예: "/images/행동가형.png" → "행동가형"
+    const match = path.match(/([\uAC00-\uD7A3]+)(?=\.\w+$)/);
+    return match ? match[1] : "";
+  }
+  const imageName = extractKoreanName(resultImage);
 
   return (
     <>
@@ -38,22 +47,16 @@ export default function ResultDetail({
           </p>
         </div>
 
-        <div className="aspect-square w-[14rem] lg:w-[24rem] relative leading-none">
-          <img
-            src="/temp-pic.svg"
-            className="absolute top-0 left-0 w-full h-full object-contain"
-            alt="결과유형 이미지"
-          />
-        </div>
+        <img src={`/${imageName}.svg`} className="w-[26rem]" />
       </div>
 
       <ChartCanvas chartData={chartResult} />
 
       <div className=" bg-white rounded-[0.6rem] leading-[200%] tracking-[-2.3%] py-[2rem] px-[1.6rem]">
         <ul className="list-disc pl-[2rem] space-y-[0.6rem] text-grey-90 text-[1.2rem] lg:text-[1.4rem] leading-[160%]">
-          <li>갈등을 부드럽게 푸는 데 능숙</li>
-          <li>구성원 간 분위기와 감정선을 중요하게 여김</li>
-          <li>말투/문맥의 뉘앙스를 민감하게 감지함</li>
+          {description.split(". ").map((detail, i) => (
+            <li key={i}>{detail}</li>
+          ))}
         </ul>
       </div>
     </>

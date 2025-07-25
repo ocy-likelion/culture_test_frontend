@@ -6,13 +6,11 @@ export default function NotFoundPage() {
   const navigate = useNavigate();
   return (
     <SurveyLayout mainCN="items-center justify-center">
-      <div className="relative aspect-square w-[20rem] lg:w-[24rem]">
-        <img
-          src="/error.svg"
-          className="absolute top-0 left-0 w-full h-full object-contain"
-          alt="에러 이미지"
-        />
-      </div>
+      <img
+        src="/error.svg"
+        className="object-contain w-[20rem] lg:w-[24rem]"
+        alt="에러 이미지"
+      />
 
       <div className="flex flex-col gap-3 text-center">
         <p className="text-[2.4rem] text-grey-90 font-medium">
