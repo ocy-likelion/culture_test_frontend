@@ -108,3 +108,26 @@ img {
 .custom-scrollbar {
   scrollbar-gutter: stable; /* ✅ 스크롤 공간을 레이아웃에 포함 */
 }
+
+.tooltip-box {
+  @apply absolute top-full mt-[1.2rem] -right-[1rem]
+         bg-grey-90 text-white text-[1.2rem] rounded-[0.6rem]
+         px-[1.4rem] py-[1.5rem] w-[26rem] leading-[1.6] z-10 shadow-md
+         opacity-0 transition-opacity duration-500;
+
+  position: absolute;
+}
+
+.tooltip-box::after {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(850%);
+  width: 0;
+  height: 0;
+
+  border-left: 0.6rem solid transparent;
+  border-right: 0.6rem solid transparent;
+  border-bottom: 1.2rem solid #333333; /* <- bg-grey-90 색상과 일치 */
+}

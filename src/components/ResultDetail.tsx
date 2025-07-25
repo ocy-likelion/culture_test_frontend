@@ -13,8 +13,23 @@ export default function ResultDetail({
   return (
     <>
       <div
-        className={`flex items-center justify-around bg-white rounded-[0.6rem] px-[1.4rem] ${className}`}
+        className={`flex items-center justify-around bg-white rounded-[0.6rem] px-[1.4rem] relative ${className}`}
       >
+        <div className="absolute top-[1.4rem] right-[1.4rem]">
+          <div className="relative group">
+            <img
+              src="/tooltip.svg"
+              alt="군집화 AI 분석"
+              className="w-[2.4rem]"
+            />
+            <div className="tooltip-box group-hover:opacity-100">
+              이 결과는 사용자들의 응답 데이터를 기반으로 군집화된 결과입니다.
+              MBTI처럼 고정된 분류가 아닌, 실제 유사 응답들을 바탕으로
+              분석되었습니다.
+            </div>
+          </div>
+        </div>
+
         <div className="text-center font-medium text-[1.7rem] lg:text-[2.4rem] leading-[135%]">
           <p>{user?.nickname} 담당자님은</p>
           <p>
