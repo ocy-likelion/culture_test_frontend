@@ -12,13 +12,6 @@ export default function ResultDetail({
 }: ChartData) {
   const { user } = useUserStore();
 
-  function extractKoreanName(path: string): string {
-    // 예: "/images/행동가형.png" → "행동가형"
-    const match = path.match(/([\uAC00-\uD7A3]+)(?=\.\w+$)/);
-    return match ? match[1] : "";
-  }
-  const imageName = extractKoreanName(resultImage);
-
   return (
     <>
       <div
@@ -47,7 +40,7 @@ export default function ResultDetail({
           </p>
         </div>
 
-        <img src={`/${imageName}.svg`} className="w-[26rem]" />
+        <img src={`/${resultImage}.svg`} className="w-[26rem]" />
       </div>
 
       <ChartCanvas chartData={chartResult} />

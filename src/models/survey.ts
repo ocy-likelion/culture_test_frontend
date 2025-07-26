@@ -7,6 +7,7 @@ export interface SurveyLayoutProps {
   rightSlot?: ReactNode;
   primaryBtn?: ReactNode;
   secondaryBtn?: ReactNode;
+  lastBtn?: ReactNode;
   containerCN?: string;
   mainCN?: string;
   footerCN?: string;

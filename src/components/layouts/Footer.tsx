@@ -3,6 +3,7 @@ import { FooterProps } from "@/models/survey";
 export default function Footer({
   primaryBtn,
   secondaryBtn,
+
   footerCN = "",
 }: FooterProps) {
   if (!primaryBtn && !secondaryBtn) {

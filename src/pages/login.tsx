@@ -79,7 +79,7 @@ export default function Login() {
         mainCN="pt-[6rem] items-center gap-[2rem]"
       >
         <div className="flex flex-col justify-center items-center gap-[2rem] mt-[4rem] lg:mt-[8rem]">
-          <img src="/logo.svg" className="w-[20rem] lg:w-[25rem]" />
+          <img src="/mutsa-logo.svg" className="w-[20rem] lg:w-[25rem]" />
           <p className="text-[1.6rem] lg:text-[2rem] font-regular">
             나와 잘 맞는 사람, AI가 찾아드립니다
           </p>
