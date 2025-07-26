@@ -56,7 +56,7 @@ export default function ResultsPage() {
       }
       middleSlot={
         <button onClick={() => navigate("/")}>
-          <img src={`/mutsa-logo.svg`} className="w-[16rem] lg:w-[18rem]" />
+          <img src={`/logo-s.svg`} className="w-[5rem] lg:w-[6rem]" />
         </button>
       }
       rightSlot={

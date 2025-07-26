@@ -76,17 +76,14 @@ export default function Login() {
             </Button>
           )
         }
-        mainCN="pt-[6rem] items-center gap-[2rem]"
+        mainCN="pt-[6rem] items-center gap-[2rem] bg-primary-30"
+        footerCN="mb-[14rem] lg:mb-[16rem]"
       >
-        <div className="flex flex-col justify-center items-center gap-[2rem] mt-[4rem] lg:mt-[8rem]">
-          <img src="/mutsa-logo.svg" className="w-[20rem] lg:w-[25rem]" />
-          <p className="text-[1.6rem] lg:text-[2rem] font-regular">
-            나와 잘 맞는 사람, AI가 찾아드립니다
+        <div className="flex flex-col justify-center items-center gap-[1rem] lg:gap-[2rem] mt-[14rem] lg:mt-[18rem]">
+          <p className="text-[1.6rem] lg:text-[2rem] text-white">
+            컬쳐핏 <span className="font-semibold">채용의 시작,</span>
           </p>
-        </div>
-
-        <div>
-          <img src="/login-main.svg" className="w-[30rem] lg:w-[36rem]" />
+          <img src="/logo.svg" className="w-[14rem] lg:w-[18rem]" />
         </div>
       </SurveyLayout>
     </>

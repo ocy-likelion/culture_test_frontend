@@ -11,7 +11,7 @@ export default function SurveyLayout({
   secondaryBtn,
   containerCN = "bg-white",
   mainCN = "",
-  footerCN = "bg-white",
+  footerCN,
 }: SurveyLayoutProps) {
   return (
     <div
