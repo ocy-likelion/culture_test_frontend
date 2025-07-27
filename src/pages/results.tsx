@@ -12,13 +12,15 @@ import { useCapture } from "@/hooks/useCapture";
 export default function ResultsPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { resultType, result, imageUrl, resultTypeDetail } = location.state;
+  const { resultType, result, imageUrl, resultTypeDetail } =
+    location.state?.main;
+  const { percentage } = location.state?.cluster;
   const { resetAnswer } = useAnswersStore();
   const { user } = useUserStore();
 
   function extractKoreanName(path: string): string {
-    // 예: "/images/행동가형.png" → "행동가형"
-    const match = path.match(/([\uAC00-\uD7A3]+)(?=\.\w+$)/);
+    const filename = path?.split("/").pop(); // "리더형.png"
+    const match = filename?.match(/([\uAC00-\uD7A3]+)(?=\.\w+$)/);
     return match ? match[1] : "";
   }
   const imageName = extractKoreanName(imageUrl);
@@ -30,22 +32,6 @@ export default function ResultsPage() {
     if (!user || !imageName) return;
     captureDiv(divRef, `${user.nickname}_${imageName}.png`);
   };
-
-  // const handleCapture = async () => {
-  //   if (!divRef.current) return;
-
-  //   try {
-  //     const div = divRef.current;
-  //     const canvas = await html2canvas(div, { scale: 2 });
-  //     canvas.toBlob((blob) => {
-  //       if (blob !== null) {
-  //         saveAs(blob, `${user?.nickname}_${imageName}.png`);
-  //       }
-  //     });
-  //   } catch (error) {
-  //     console.error("Error converting div to image:", error);
-  //   }
-  // };
 
   return (
     <SurveyLayout
@@ -70,7 +56,7 @@ export default function ResultsPage() {
         <button onClick={() => handleCapture()}>
           <img
             src={`/download.svg`}
-            className="w-[3rem] lg:w-[3.2rem] aspect-square"
+            className="w-[2.8rem] lg:w-[3rem] aspect-square"
           />
         </button>
       }
@@ -97,14 +83,15 @@ export default function ResultsPage() {
       <div
         ref={divRef}
         id="capture-area"
-        className="flex flex-col space-y-[1.8rem]"
+        className="flex flex-col space-y-[1.6rem] lg:space-y-[1.8rem]"
       >
         <ResultDetail
           description={resultTypeDetail}
           resultImage={imageName}
           chartResult={result}
           resultType={resultType}
-          className="flex-col pt-[3rem]"
+          percentageBox={percentage}
+          className="flex-col pt-[2rem] lg:pt-[3rem] gap-2 lg:gap-4"
         />
       </div>
     </SurveyLayout>

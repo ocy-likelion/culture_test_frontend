@@ -39,6 +39,7 @@ export interface ChartData {
   chartResult: ChartProps[];
   history?: boolean;
   className?: string;
+  percentageBox?: number;
 }
 
 type Choices = {

@@ -138,16 +138,33 @@ export default function SurveyPage() {
       // ✅ POST 성공 후 polling 시작
       intervalRef.current = setInterval(async () => {
         try {
-          const res = await axios.get(
+          const mainRes = await axios.get(
             `/api/v1/result/latest/scoresAndPercentages/${userId}/survey/${surveyId}`
           );
-          console.log("📦 polling 요청 응답:", res.data);
+          console.log("📦 polling 요청 응답:", mainRes.data);
 
-          if (res.data.status === "done") {
+          if (mainRes.data.status === "done") {
             console.log("✅ 분석 완료: polling 종료");
-            clearInterval(intervalRef.current);
-            setIsAnalyzing(false); // 로딩 종료
-            navigate("/results", { state: res.data });
+
+            // 전체 중 해당 유형의 비율 및 몇 번째 군집세대에 해당하는지 반환 API 요청
+            try {
+              const clusterRes = await axios.get("/api/v1/cluster/percentage", {
+                params: { surveyId: 1 },
+              });
+              console.log("📦 클러스터 관련 응답:", clusterRes.data);
+
+              setIsAnalyzing(false); // 로딩 종료
+              navigate("/results", {
+                state: {
+                  main: mainRes.data,
+                  cluster: clusterRes.data,
+                },
+              });
+              resetAnswer();
+              clearInterval(intervalRef.current);
+            } catch (err) {
+              console.error(err);
+            }
           }
         } catch (err) {
           console.error("❌ [GET] Polling 중 오류", err);
@@ -205,7 +222,6 @@ export default function SurveyPage() {
             onClick={() => {
               if (!checkUnanswered()) return;
               submitMutation.mutate(answers);
-              resetAnswer();
             }}
           >
             결과 제출
@@ -275,22 +291,22 @@ export default function SurveyPage() {
 
       {timeoutError && (
         <Modal>
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-6">
             <img
               src="/error-g.svg"
-              className="w-[12rem] lg:w-[20rem]"
+              className="w-[14rem] lg:w-[20rem]"
               alt="에러 이미지"
             />
 
-            <p className="font-bold text-[1.6rem] text-red-500">
-              분석이 지연되고 있어요
+            <p className="font-bold text-[1.4rem] lg:text-[1.6rem] text-red-500">
+              분석 과정 중 예기치 못한 문제가 발생했어요.
             </p>
-            <div className="text-[1.2rem] text-grey-70 text-center">
-              <p>
-                네트워크 문제 또는 서버 처리 지연으로 인해 결과 분석이
-                실패했어요.
+
+            <div className="text-center flex flex-col gap-2 leading-[110%]">
+              <p className="text-[1.2rem] text-grey-70">
+                일시적인 서버 오류나 네트워크 문제로 인해
+                <br /> 결과 분석이 정상적으로 완료되지 않았어요.
               </p>
-              <p>다시 시도하시겠어요?</p>
             </div>
 
             <div className="flex gap-4 mt-4">
@@ -302,15 +318,18 @@ export default function SurveyPage() {
                   setIsAnalyzing(true);
                   submitMutation.mutate(answers); // 다시 요청
                 }}
-                className="min-w-fit px-10"
+                className="px-8"
               >
                 다시 시도하기
               </Button>
               <Button
                 secondary
                 rounded
-                onClick={() => navigate("/intro")}
-                className="min-w-fit px-10"
+                onClick={() => {
+                  navigate("/intro");
+                  resetAnswer();
+                }}
+                className="px-8"
               >
                 시작 화면으로
               </Button>

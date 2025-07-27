@@ -9,16 +9,40 @@ export default function ResultDetail({
   resultType,
   className,
   history,
+  percentageBox,
 }: ChartData) {
   const { user } = useUserStore();
 
   return (
     <>
       <div
-        className={`flex items-center justify-around bg-white rounded-[0.6rem] px-[1.4rem] relative ${className}`}
+        className={`flex items-center justify-around bg-white rounded-[0.6rem] px-[1.4rem] ${className}`}
       >
-        <div className="absolute top-[1.4rem] right-[1.4rem]">
-          <div className="relative group">
+        <div className="text-center font-medium text-[1.7rem] lg:text-[2.4rem] leading-[135%]">
+          <p>{user?.nickname} 담당자님은</p>
+          <p>
+            <span className="text-primary-30">{resultType}</span>을<br />
+            {history ? "선호하셨군요!" : "선호하시는군요!"}
+          </p>
+        </div>
+
+        <img
+          src={`/${resultImage}.svg`}
+          className="w-[16rem] lg:w-[24rem] lg:mr-4"
+        />
+      </div>
+
+      {percentageBox && (
+        <div className="flex items-center justify-center gap-2 bg-white h-[4.8rem] leading-[4.8rem] rounded-[0.6rem] text-center border-[0.08px] border-primary-30 px-[0.6rem] text-[1.4rem] lg:text-[1.7rem]">
+          <p>
+            총{" "}
+            <span className="text-primary-30 font-semibold">
+              {percentageBox}%
+            </span>
+            의 담당자들이 같은 유형을 선호하고 있어요!
+          </p>
+
+          <div className="relative group flex-shrink-0">
             <img
               src="/tooltip.svg"
               alt="군집화 AI 분석"
@@ -31,20 +55,7 @@ export default function ResultDetail({
             </div>
           </div>
         </div>
-
-        <div className="text-center font-medium text-[1.7rem] lg:text-[2.4rem] leading-[135%]">
-          <p>{user?.nickname} 담당자님은</p>
-          <p>
-            <span className="text-primary-30">{resultType}</span>
-            {history ? "을 선호하셨군요!" : "을 선호하시는군요!"}
-          </p>
-        </div>
-
-        <img
-          src={`/${resultImage}.svg`}
-          className="w-[16rem] lg:w-[24rem] lg:mr-4"
-        />
-      </div>
+      )}
 
       <ChartCanvas chartData={chartResult} />
 

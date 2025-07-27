@@ -45,34 +45,25 @@ export default function Login() {
     <>
       <SurveyLayout
         primaryBtn={
-          !user ? (
+          isExpanded && (
             <Button
               kakao
               rounded
               onClick={handleKakaoLogin}
-              className="text-[1.4rem] lg:text-[1.6rem]"
+              className="transition-all duration-1000 text-[1.4rem] lg:text-[1.6rem]"
             >
               <img src="/kakao.svg" className="w-[2rem] aspect-square mr-2" />
               카카오로 시작하기
             </Button>
-          ) : (
-            <Button
-              primary
-              rounded
-              className="text-[1.4rem] lg:text-[1.6rem] mb-2"
-              onClick={() => navigate("/intro")}
-            >
-              설문 시작하기
-            </Button>
           )
         }
         secondaryBtn={
-          !user && (
+          isExpanded && (
             <Button
               google
               rounded
               // onClick={}
-              className="text-[1.4rem] lg:text-[1.6rem] "
+              className="transition-all duration-1000 text-[1.4rem] lg:text-[1.6rem] "
               onClick={handleGoogleLogin}
             >
               <img
