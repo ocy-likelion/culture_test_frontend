@@ -47,9 +47,12 @@ export default function ResultDetail({
 
       <div className=" bg-white rounded-[0.6rem] leading-[200%] tracking-[-2.3%] py-[2rem] px-[1.6rem]">
         <ul className="list-disc pl-[2rem] space-y-[0.6rem] text-grey-90 text-[1.2rem] lg:text-[1.4rem] leading-[160%]">
-          {description.split(". ").map((detail, i) => (
-            <li key={i}>{detail}</li>
-          ))}
+          {description
+            .split(". ")
+            .slice(0, -1)
+            .map((detail, i) => (
+              <li key={i}>{detail}</li>
+            ))}
         </ul>
       </div>
     </>

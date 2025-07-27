@@ -131,3 +131,33 @@ img {
   border-right: 0.6rem solid transparent;
   border-bottom: 1.2rem solid #333333; /* <- bg-grey-90 색상과 일치 */
 }
+
+@layer utilities {
+  @keyframes glow {
+    0%,
+    100% {
+      text-shadow: drop-shadow(0 0 0px #f97316);
+    }
+    50% {
+      text-shadow: drop-shadow(0 0 8px #f97316);
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .animate-glow {
+    animation: glow 1.8s infinite ease-in-out;
+  }
+
+  .animate-blink {
+    animation: blink 1.2s infinite ease-in-out;
+  }
+}
