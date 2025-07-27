@@ -1,15 +1,28 @@
 import Spinner from "@/components/Spinner";
 import useAxiosInstance from "@/hooks/useAxiosInstance";
+import { useCapture } from "@/hooks/useCapture";
+import useUserStore from "@/zustand/useUserStore";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import ResultDetail from "@components/ResultDetail";
 import { useQuery } from "@tanstack/react-query";
+import { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function HistoryPage() {
   const navigate = useNavigate();
   const axios = useAxiosInstance();
+  const { user } = useUserStore();
   const { resultId } = useParams(); // path parameter 추출 (경로에 포함된 값)
   // cf) useSearchParams(): 쿼리스트링 추출
+  console.log(resultId);
+
+  const { captureDiv } = useCapture();
+  const divRef = useRef<HTMLDivElement>(null);
+
+  const handleCapture = () => {
+    if (!user || !imageName) return;
+    captureDiv(divRef, `${user.nickname}_${imageName}.png`);
+  };
 
   const {
     data: detail,
@@ -25,6 +38,14 @@ export default function HistoryPage() {
     },
   });
 
+  function extractKoreanName(path: string): string {
+    // 예: "/images/행동가형.png" → "행동가형"
+    const filename = path?.split("/").pop(); // "리더형.png"
+    const match = filename?.match(/([\uAC00-\uD7A3]+)(?=\.\w+$)/);
+    return match ? match[1] : "";
+  }
+  const imageName = extractKoreanName(detail?.analysisResponseDto.imageUrl);
+
   return (
     <SurveyLayout
       containerCN="bg-grey-20"
@@ -36,13 +57,13 @@ export default function HistoryPage() {
           />
         </button>
       }
-      middleSlot={<img src={`/logo.svg`} className="w-[16rem]" />}
+      middleSlot={<img src={`/logo-s.svg`} className="w-[5rem] lg:w-[6rem]" />}
       rightSlot={
         <button>
           <img
-            src={`/share.svg`}
+            src={`/download.svg`}
             className="w-[2.4rem] lg:w-[3.2rem] aspect-square"
-            onClick={() => navigate("/mypage")}
+            onClick={() => handleCapture()}
           />
         </button>
       }
@@ -57,11 +78,19 @@ export default function HistoryPage() {
       )}
 
       {!isLoading && !isError && (
-        <ResultDetail
-          chartResult={detail?.result}
-          resultType={detail?.resultType}
-          history
-        />
+        <div
+          ref={divRef}
+          id="capture-area"
+          className="flex flex-col space-y-[1.8rem]"
+        >
+          <ResultDetail
+            chartResult={detail?.analysisResponseDto.result}
+            resultType={detail?.analysisResponseDto.resultType}
+            description={detail?.analysisResponseDto.resultTypeDetail}
+            resultImage={imageName}
+            history
+          />
+        </div>
       )}
     </SurveyLayout>
   );

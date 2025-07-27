@@ -7,6 +7,7 @@ import html2canvas from "html2canvas";
 import saveAs from "file-saver";
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useCapture } from "@/hooks/useCapture";
 
 export default function ResultsPage() {
   const navigate = useNavigate();
@@ -23,22 +24,28 @@ export default function ResultsPage() {
   const imageName = extractKoreanName(imageUrl);
 
   const divRef = useRef<HTMLDivElement>(null);
+  const { captureDiv } = useCapture();
 
-  const handleCapture = async () => {
-    if (!divRef.current) return;
-
-    try {
-      const div = divRef.current;
-      const canvas = await html2canvas(div, { scale: 2 });
-      canvas.toBlob((blob) => {
-        if (blob !== null) {
-          saveAs(blob, `${user?.nickname}_${imageName}.png`);
-        }
-      });
-    } catch (error) {
-      console.error("Error converting div to image:", error);
-    }
+  const handleCapture = () => {
+    if (!user || !imageName) return;
+    captureDiv(divRef, `${user.nickname}_${imageName}.png`);
   };
+
+  // const handleCapture = async () => {
+  //   if (!divRef.current) return;
+
+  //   try {
+  //     const div = divRef.current;
+  //     const canvas = await html2canvas(div, { scale: 2 });
+  //     canvas.toBlob((blob) => {
+  //       if (blob !== null) {
+  //         saveAs(blob, `${user?.nickname}_${imageName}.png`);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.error("Error converting div to image:", error);
+  //   }
+  // };
 
   return (
     <SurveyLayout

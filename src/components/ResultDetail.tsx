@@ -22,7 +22,7 @@ export default function ResultDetail({
             <img
               src="/tooltip.svg"
               alt="군집화 AI 분석"
-              className="w-[2.4rem]"
+              className="w-[1.8rem] lg:w-[2.4rem] "
             />
             <div className="tooltip-box group-hover:opacity-100">
               이 결과는 사용자들의 응답 데이터를 기반으로 군집화된 결과입니다.
@@ -40,7 +40,10 @@ export default function ResultDetail({
           </p>
         </div>
 
-        <img src={`/${resultImage}.svg`} className="w-[26rem]" />
+        <img
+          src={`/${resultImage}.svg`}
+          className="w-[16rem] lg:w-[24rem] lg:mr-4"
+        />
       </div>
 
       <ChartCanvas chartData={chartResult} />

@@ -10,7 +10,7 @@ export default function ResultEntry({
   const navigate = useNavigate();
 
   return (
-    <div className="flex w-full border-[0.05rem] lg:border border-grey-50 rounded-[0.8rem] pl-[1.4rem] pr-[2.8rem] py-[1rem] gap-[1rem]">
+    <div className="flex w-full border-[0.05rem] lg:border border-grey-50 rounded-[0.8rem] pl-[1rem] pr-[1.4rem] lg:pl-[1.4rem] lg:pr-[2.8rem] py-[1rem] gap-[1rem]">
       <img
         src={image}
         className="w-[10rem] lg:w-[12rem]"
@@ -18,7 +18,7 @@ export default function ResultEntry({
       />
 
       <div className="w-full flex justify-between items-center">
-        <div className="flex flex-col gap-2 lg:gap-4">
+        <div className="flex flex-col gap-2 lg:gap-4 ">
           <span className="font-medium text-[1.4rem] lg:text-[1.8rem]">
             {type}
           </span>
