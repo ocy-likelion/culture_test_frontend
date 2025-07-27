@@ -166,7 +166,7 @@ export default function MyPage() {
               resultId={result.id}
               type={result.resultType}
               date={result.localDate}
-              image={result.image}
+              image={result.imageUrl}
             />
           ))}
       </div>

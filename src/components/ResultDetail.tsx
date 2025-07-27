@@ -16,19 +16,21 @@ export default function ResultDetail({
   return (
     <>
       <div
-        className={`flex items-center justify-around bg-white rounded-[0.6rem] px-[1.4rem] ${className}`}
+        className={`flex items-center justify-around bg-white rounded-[0.6rem] px-[1rem] lg:px-[1.4rem] py-[1rem] ${className}`}
       >
         <div className="text-center font-medium text-[1.7rem] lg:text-[2.4rem] leading-[135%]">
           <p>{user?.nickname} 담당자님은</p>
           <p>
-            <span className="text-primary-30">{resultType}</span>을<br />
+            <span className="text-primary-30">{resultType}</span>을{" "}
             {history ? "선호하셨군요!" : "선호하시는군요!"}
           </p>
         </div>
 
         <img
           src={`/${resultImage}.svg`}
-          className="w-[16rem] lg:w-[24rem] lg:mr-4"
+          className={`lg:mr-4 ${
+            history ? "w-[14rem]" : "w-[16rem] lg:w-[24rem]"
+          }`}
         />
       </div>
 

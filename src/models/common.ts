@@ -59,7 +59,7 @@ export interface ResultData {
   id: number;
   resultType: string;
   localDate: string;
-  image: string;
+  imageUrl: string;
 }
 
 export interface ResultEntryProps {

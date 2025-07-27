@@ -8,6 +8,7 @@ import saveAs from "file-saver";
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCapture } from "@/hooks/useCapture";
+import extractKoreanName from "@/hooks/useTranslate";
 
 export default function ResultsPage() {
   const navigate = useNavigate();
@@ -18,11 +19,6 @@ export default function ResultsPage() {
   const { resetAnswer } = useAnswersStore();
   const { user } = useUserStore();
 
-  function extractKoreanName(path: string): string {
-    const filename = path?.split("/").pop(); // "리더형.png"
-    const match = filename?.match(/([\uAC00-\uD7A3]+)(?=\.\w+$)/);
-    return match ? match[1] : "";
-  }
   const imageName = extractKoreanName(imageUrl);
 
   const divRef = useRef<HTMLDivElement>(null);

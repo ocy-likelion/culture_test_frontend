@@ -67,7 +67,7 @@ export default function HistoryPage() {
           />
         </button>
       }
-      mainCN="px-[2rem] pt-[8rem] gap-[1.6rem] xl:gap-[2rem] pb-[2rem]"
+      mainCN="px-[2rem] pt-[7rem] lg:pt-[8rem] gap-[1.6rem] xl:gap-[2rem] pb-[2rem]"
     >
       {isLoading && <Spinner />}
 
@@ -88,6 +88,7 @@ export default function HistoryPage() {
             resultType={detail?.analysisResponseDto.resultType}
             description={detail?.analysisResponseDto.resultTypeDetail}
             resultImage={imageName}
+            className="gap-2"
             history
           />
         </div>
