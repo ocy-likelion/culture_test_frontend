@@ -13,7 +13,7 @@ export default function Modal({ children, onClose }: ModalProps) {
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full bg-black/50 z-50 flex items-center justify-center"
+      className="fixed top-0 left-0 w-full h-full bg-black/50 z-50 flex items-center justify-center px-[4rem]"
       onClick={handleBackgroundClick}
     >
       <div

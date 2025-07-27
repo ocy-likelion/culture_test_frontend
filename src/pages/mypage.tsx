@@ -68,7 +68,7 @@ export default function MyPage() {
     onSuccess: (data) => {
       setWithdraw(false); // 모달 창 닫기 (UI)
       resetUser(); // 전역상태 초기화
-      toast.success(data.msg);
+      toast.success("정상적으로 탈퇴 처리되었습니다.");
       navigate("/"); // 홈(로그인 페이지)으로 이동
     },
     onError: (err) => {
