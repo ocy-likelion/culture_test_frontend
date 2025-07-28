@@ -94,7 +94,6 @@ export default function IntroPage() {
         </Button>
       }
       mainCN="pt-[6rem] px-[2rem] items-center gap-[2rem]"
-      footerCN="static"
     >
       <div
         className="flex flex-col gap-[1rem] 2xl:gap-[2.8rem] mt-[4rem] lg:mt-[6rem]
