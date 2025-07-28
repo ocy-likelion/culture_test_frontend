@@ -35,11 +35,11 @@ export default function Login() {
     window.location.href = googleUrl; // 💥redirect_uri 파라미터 이름은 "state"
   };
 
-  // useEffect(() => {
-  //   // 1초 뒤 오른쪽 화면으로 전환
-  //   const timer = setTimeout(() => setIsExpanded(true), 1000);
-  //   return () => clearTimeout(timer);
-  // }, []);
+  useEffect(() => {
+    // 1초 뒤 오른쪽 화면으로 전환
+    const timer = setTimeout(() => setIsExpanded(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
