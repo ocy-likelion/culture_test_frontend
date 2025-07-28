@@ -1,6 +1,7 @@
 import Spinner from "@/components/Spinner";
 import useAxiosInstance from "@/hooks/useAxiosInstance";
 import { useCapture } from "@/hooks/useCapture";
+import convertToSvgPath from "@/hooks/useConvertPath";
 import useUserStore from "@/zustand/useUserStore";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import ResultDetail from "@components/ResultDetail";
@@ -37,14 +38,7 @@ export default function HistoryPage() {
       return res.data;
     },
   });
-
-  function extractKoreanName(path: string): string {
-    // 예: "/images/행동가형.png" → "행동가형"
-    const filename = path?.split("/").pop(); // "리더형.png"
-    const match = filename?.match(/([\uAC00-\uD7A3]+)(?=\.\w+$)/);
-    return match ? match[1] : "";
-  }
-  const imageName = extractKoreanName(detail?.analysisResponseDto.imageUrl);
+  const imageName = convertToSvgPath(detail?.analysisResponseDto.imageUrl);
 
   return (
     <SurveyLayout

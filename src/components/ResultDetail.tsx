@@ -12,7 +12,7 @@ export default function ResultDetail({
   percentageBox,
 }: ChartData) {
   const { user } = useUserStore();
-
+  console.log("resultImage: ", resultImage);
   return (
     <>
       <div
@@ -27,7 +27,7 @@ export default function ResultDetail({
         </div>
 
         <img
-          src={`/${resultImage}.svg`}
+          src={resultImage}
           className={`lg:mr-4 ${
             history ? "w-[14rem]" : "w-[16rem] lg:w-[24rem]"
           }`}

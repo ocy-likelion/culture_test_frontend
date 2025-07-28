@@ -3,12 +3,10 @@ import Button from "@components/Button";
 import SurveyLayout from "@components/layouts/SurveyLayout";
 import ResultDetail from "@components/ResultDetail";
 import useAnswersStore from "@zustand/useAnswersStore";
-import html2canvas from "html2canvas";
-import saveAs from "file-saver";
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCapture } from "@/hooks/useCapture";
-import extractKoreanName from "@/hooks/useTranslate";
+import convertToSvgPath from "@/hooks/useConvertPath";
 
 export default function ResultsPage() {
   const navigate = useNavigate();
@@ -19,14 +17,14 @@ export default function ResultsPage() {
   const { resetAnswer } = useAnswersStore();
   const { user } = useUserStore();
 
-  const imageName = extractKoreanName(imageUrl);
+  const imageName = convertToSvgPath(imageUrl);
 
   const divRef = useRef<HTMLDivElement>(null);
   const { captureDiv } = useCapture();
 
   const handleCapture = () => {
-    if (!user || !imageName) return;
-    captureDiv(divRef, `${user.nickname}_${imageName}.png`);
+    if (!user || !resultType) return;
+    captureDiv(divRef, `${user.nickname}_${resultType}.png`);
   };
 
   return (

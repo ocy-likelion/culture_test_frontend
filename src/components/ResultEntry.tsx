@@ -1,4 +1,4 @@
-import extractKoreanName from "@/hooks/useTranslate";
+import convertToSvgPath from "@/hooks/useConvertPath";
 import { ResultEntryProps } from "@/models/common";
 import { useNavigate } from "react-router-dom";
 
@@ -9,12 +9,12 @@ export default function ResultEntry({
   image,
 }: ResultEntryProps) {
   const navigate = useNavigate();
-  const imageName = extractKoreanName(image);
+  const imageName = convertToSvgPath(image);
 
   return (
     <div className="flex w-full border-[0.05rem] lg:border border-grey-50 rounded-[0.8rem] pl-[1rem] pr-[1.4rem] lg:pl-[1.4rem] lg:pr-[2.8rem] py-[1rem] gap-[1rem]">
       <img
-        src={`/${imageName}.svg`}
+        src={imageName}
         className="w-[10rem] lg:w-[12rem]"
         alt="결과유형 이미지"
       />
