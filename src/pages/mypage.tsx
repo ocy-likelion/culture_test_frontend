@@ -42,7 +42,7 @@ export default function MyPage() {
       setLogout(false); // 모달 창 닫기 (UI)
       resetUser(); // 전역상태 초기화
       toast.success("성공적으로 로그아웃 되었습니다.");
-      navigate("/"); // 홈(로그인 페이지)으로 이동
+      navigate("/", { replace: true });
     },
     onError: (err) => {
       console.error("로그아웃 실패", err);

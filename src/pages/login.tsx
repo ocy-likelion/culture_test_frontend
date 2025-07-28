@@ -6,9 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { user } = useUserStore();
+  const { user, fromSession, clearFromSession } = useUserStore();
   const REDIRECT_URI: string = `${import.meta.env.VITE_API_FRONT_URL}/auth`;
   const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    if (fromSession) {
+      clearFromSession(); // ✅ 홈에 들어온 시점에서 초기화
+    }
+  }, [fromSession, clearFromSession]);
 
   // 로그인된 상태에서 로그인 페이지('/') 접근 불가
   useEffect(() => {

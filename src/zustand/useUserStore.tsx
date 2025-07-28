@@ -12,7 +12,9 @@ const userStore: StateCreator<
 > = (set) => ({
   user: null,
   setUser: (user: User) => set({ user }),
-  resetUser: () => set({ user: null }),
+  resetUser: () => set({ user: null, fromSession: true }),
+  fromSession: false,
+  clearFromSession: () => set({ fromSession: false }),
 });
 
 const useUserStore = create<UserStore>()(
