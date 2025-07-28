@@ -61,7 +61,18 @@ export default function ResultDetail({
 
       <ChartCanvas chartData={chartResult} />
 
-      <div className=" bg-white rounded-[0.6rem] leading-[200%] tracking-[-2.3%] py-[2rem] px-[1.6rem]">
+      <div className=" bg-white rounded-[0.6rem] leading-[200%] tracking-[-2.3%] py-[2rem] px-[1.6rem] flex flex-col gap-4">
+        <div className="flex gap-2 items-center">
+          <img
+            src="/bulb.svg"
+            alt="bulb"
+            className="w-[1.8rem] lg:w-[2.6rem]"
+          />
+          <p className="text-[1.6rem] lg:text-[1.7rem]">
+            이런 특징을 가지고 있어요
+          </p>
+        </div>
+
         <ul className="list-disc pl-[2rem] space-y-[0.6rem] text-grey-90 text-[1.2rem] lg:text-[1.4rem] leading-[160%]">
           {description
             .split(". ")

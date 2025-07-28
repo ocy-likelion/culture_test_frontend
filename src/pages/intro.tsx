@@ -78,10 +78,14 @@ export default function IntroPage() {
         </button>
       }
       primaryBtn={
-        <div className="w-full h-min bg-grey-20 rounded-[1rem] text-[1rem] lg:text-[1.4rem] leading-[200%] tracking-[-2.3%] p-[0.8rem] lg:p-[1rem] mb-[0.6rem]">
-          <p>💡 16문항 / 약 5분 소요</p>
-          <p>업무 스타일, 소통 방식, 판단 기준 등</p>
-          <p>당신의 조직문화 성향을 정밀 분석합니다.</p>
+        <div className="flex gap-2 w-full h-min bg-grey-20 rounded-[1rem] text-[1rem] lg:text-[1.4rem] leading-[200%] tracking-[-2.3%] p-[0.8rem] lg:p-[1rem] mb-[0.6rem]">
+          <div className="min-w-fit">💡</div>
+
+          <div className="grow">
+            <p>16문항 / 약 5분 소요</p>
+            <p>업무 스타일, 소통 방식, 판단 기준 등</p>
+            <p>당신의 조직문화 성향을 정밀 분석합니다.</p>
+          </div>
         </div>
       }
       secondaryBtn={
@@ -97,11 +101,11 @@ export default function IntroPage() {
       "
       >
         <p className="font-semibold text-[2.2rem] lg:text-[2.6rem] text-grey-100 text-center leading-[135%] tracking-[-2.3%]">
-          AI가 분석한 당신의 컬쳐핏,
-          <br /> 어떤 모습일까요?
+          우리 팀과 잘 맞는 사람,
+          <br /> 궁금하지 않으세요?
         </p>
         <p className="text-[1.2rem] lg:text-[1.4rem] text-grey-70 text-center leading-[150%] tracking-[-2.3%]">
-          당신과 맞는 수강생을 찾아보세요.
+          컬쳐핏에 맞는 지원자를 찾아보세요.
           <br />
           결과는 보기 쉽게 요약해드릴게요!
         </p>

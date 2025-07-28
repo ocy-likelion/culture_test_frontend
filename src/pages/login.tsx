@@ -74,10 +74,10 @@ export default function Login() {
             </Button>
           )
         }
-        mainCN={`pt-[4rem] items-center gap-[2rem] transition-all duration-1000 ease-in-out ${
+        mainCN={`pt-[10rem] lg:pt-[16rem] items-center gap-[2rem] transition-all duration-1000 ease-in-out ${
           isExpanded ? "bg-white" : "bg-primary-30"
         }`}
-        footerCN="mb-[14rem] lg:mb-[18rem]"
+        // footerCN="mb-[14rem] lg:mb-[18rem]"
       >
         <div
           className={`flex flex-col gap-[1rem] transition-all duration-1000 ease-in-out ${
@@ -97,7 +97,7 @@ export default function Login() {
           <img
             src={`${isExpanded ? "logo-color.svg" : "/logo.svg"}`}
             className={`transition-all duration-1000 ${
-              isExpanded ? "w-[8rem] lg:w-[10rem]" : "w-[14rem] lg:w-[18rem]"
+              isExpanded ? "w-[8rem] lg:w-[10rem]" : "w-[12rem] lg:w-[16rem]"
             }`}
           />
 

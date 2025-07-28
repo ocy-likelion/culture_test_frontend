@@ -44,7 +44,12 @@ export default function ResultsPage() {
         </button>
       }
       middleSlot={
-        <button onClick={() => navigate("/")}>
+        <button
+          onClick={() => {
+            navigate("/");
+            resetAnswer();
+          }}
+        >
           <img src={`/logo-s.svg`} className="w-[5rem] lg:w-[6rem]" />
         </button>
       }
