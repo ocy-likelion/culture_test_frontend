@@ -8,16 +8,16 @@ IT 교육기관 ‘멋쟁이사자처럼’ 주관의 단기 인턴십 프로젝
 ---
 
 ### 🧭 기술 스택
-  - Frontend: React, JavaScript
-  - Backend: Java, Spring security, OAuth2, JWT, MySQL, Swagger, Spring Boot
-  - AI: Python Fast API, scikit-learn
+- Frontend: React, JavaScript
+- Backend: Java, Spring security, OAuth2, JWT, MySQL, Swagger, Spring Boot
+- AI: Python Fast API, scikit-learn
     
-  - Styling: Tailwind CSS, CSS Modules
-  - State Management
-    - Client State: Zustand
-    - Server State: TanStack Query
-  - Deployment: Vercel
-  - Auth: JWT(HTTP-only Cookie)
+- Styling: Tailwind CSS, CSS Modules
+- State Management
+  - Client State: Zustand
+  - Server State: TanStack Query
+- Deployment: Vercel
+- Auth: JWT(HTTP-only Cookie)
   
 ---
 
